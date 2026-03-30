@@ -127,7 +127,8 @@ He buscado precios de proveedores habituales como PcComponentes, Amazon y la tie
 | Disco externo 8TB | Amazon / PcComponentes | 1 | 189 € | 189 € |
 | **TOTAL** | | | | **53.125,88 €** |
 
-*Los precios pueden variar según proveedor y disponibilidad en el momento de la compra.*
+Los precios pueden variar según proveedor y disponibilidad en el momento de la compra
+
 
 ---
 
