@@ -1,4 +1,3 @@
-
 # Memoria Técnica de Hardware - Proyecto Intermodular ASIR
 
 ## 1. Análisis de Necesidades y Dimensionamiento
@@ -25,13 +24,13 @@ A la hora de elegir los equipos, hemos intentado adaptar el hardware a las neces
 
 | Componente | Especificación | Justificación |
 |:---|:---|:---|
-| **CPU** | Intel Core i9-14900K (24 núcleos, 32 hilos) | El procesador es el encargado de ejecutar todas las tareas. En este caso permite trabajar con compilaciones pesadas y varias máquinas virtuales o contenedores a la vez sin que el equipo se quede corto. |
-| **Placa Base** | Chipset Intel Z790 | Permite conectar todos los componentes y soporta tecnologías actuales como PCIe 5.0. También deja margen para futuras ampliaciones. |
-| **RAM** | 64 GB DDR5 (2x32 GB) a 6000 MHz | La RAM se usa como memoria rápida para los programas. Es importante tener bastante cantidad para poder usar Docker, máquinas virtuales y entornos de desarrollo sin ralentizaciones. |
-| **Almacenamiento** | 2 TB SSD NVMe PCIe Gen4 | Este tipo de disco es mucho más rápido que un HDD. Permite abrir proyectos grandes y cargar herramientas de desarrollo mucho más rápido. |
-| **Tarjeta Gráfica** | NVIDIA RTX 4070 (12 GB) | Puede ayudar en tareas de renderizado o en trabajos que usen aceleración gráfica, aunque no es el componente principal. |
-| **Refrigeración** | Líquida 360 mm | Este procesador genera bastante calor. La refrigeración líquida evita que baje el rendimiento cuando se usa durante mucho tiempo. |
-| **Fuente Alimentación** | 850W 80 Plus Gold | Asegura que todos los componentes reciban energía suficiente de forma estable, incluso en momentos de alta carga. |
+| **CPU** | Intel Core i9-14900K (24 núcleos, 32 hilos) | Permite trabajar con compilaciones pesadas y varias máquinas virtuales o contenedores a la vez sin problemas. |
+| **Placa Base** | Chipset Intel Z790 | Permite conectar todos los componentes y futuras ampliaciones. |
+| **RAM** | 64 GB DDR5 | Necesaria para Docker, máquinas virtuales y desarrollo sin ralentizaciones. |
+| **Almacenamiento** | 2 TB SSD NVMe | Reduce tiempos de carga y mejora el rendimiento general. |
+| **GPU** | RTX 4070 | Útil para tareas gráficas o aceleración. |
+| **Refrigeración** | Líquida 360 mm | Evita pérdida de rendimiento por temperatura. |
+| **Fuente** | 850W 80 Plus Gold | Energía estable en carga alta. |
 
 ---
 
@@ -41,12 +40,12 @@ A la hora de elegir los equipos, hemos intentado adaptar el hardware a las neces
 
 | Componente | Especificación | Justificación |
 |:---|:---|:---|
-| **CPU** | Intel Core i5-14500 (14 núcleos) | Procesador equilibrado para tareas de ofimática, navegación web y uso de aplicaciones de empresa. |
-| **Placa Base** | Chipset Intel Q670 | Placa pensada para entornos profesionales, con buena estabilidad y opciones de gestión. |
-| **RAM** | 16 GB DDR5 | Suficiente para trabajar con varias aplicaciones abiertas sin problemas. |
-| **Almacenamiento** | 512 GB SSD NVMe | Permite que el sistema arranque rápido y que los programas funcionen de forma ágil. |
-| **Formato** | SFF (Small Form Factor) | Ocupa poco espacio y es cómodo para oficinas. |
-| **Fuente Alimentación** | 260W 80 Plus Platinum | Consumo eficiente y suficiente para este tipo de equipo. |
+| **CPU** | Intel Core i5-14500 | Suficiente para ofimática y gestión. |
+| **Placa Base** | Chipset Q670 | Estabilidad en entorno profesional. |
+| **RAM** | 16 GB DDR5 | Multitarea sin problemas. |
+| **Almacenamiento** | 512 GB SSD NVMe | Sistema rápido y fluido. |
+| **Formato** | SFF | Ocupa poco espacio. |
+| **Fuente** | 260W Platinum | Eficiente para este uso. |
 
 ---
 
@@ -56,72 +55,87 @@ A la hora de elegir los equipos, hemos intentado adaptar el hardware a las neces
 
 | Componente | Especificación | Justificación |
 |:---|:---|:---|
-| **Función** | Servidor principal | Se encarga de centralizar usuarios (Active Directory), bases de datos, archivos y aplicaciones internas. |
-| **CPU** | 2x Intel Xeon Silver 4309Y | Procesadores preparados para funcionar de forma continua y gestionar varios servicios a la vez. |
-| **RAM** | 32 GB DDR4 ECC | La memoria ECC corrige errores automáticamente, lo que ayuda a evitar fallos en sistemas críticos. |
-| **Almacenamiento OS** | 2x 480 GB SSD SATA (RAID 1) | El sistema operativo está duplicado. Si un disco falla, el servidor sigue funcionando. |
-| **Almacenamiento Datos** | 4x 2 TB HDD SAS (RAID 10) | Combina rendimiento y seguridad. Permite que el sistema siga funcionando incluso si falla algún disco. |
-| **Controladora RAID** | PERC H755 | Gestiona los discos y mejora el rendimiento del sistema de almacenamiento. |
-| **Fuentes Alimentación** | 2x 800W redundantes | Si una fuente falla, la otra sigue funcionando sin apagar el servidor. |
+| **Función** | Servidor principal | Centraliza usuarios, datos y servicios. |
+| **CPU** | 2x Xeon Silver | Trabajo continuo y multitarea. |
+| **RAM** | 32 GB ECC | Evita errores en sistemas críticos. |
+| **OS** | 2x SSD RAID 1 | Sistema seguro ante fallos. |
+| **Datos** | 4x HDD RAID 10 | Rendimiento + seguridad. |
+| **RAID** | Controladora dedicada | Mejora rendimiento. |
+| **Fuente** | Redundante | Evita apagados por fallo. |
 
 ---
 
 ### 1.5 Almacenamiento y Protección
 
-| Elemento | Especificación | Justificación |
-|:---|:---|:---|
-| **RAID en servidor** | RAID 1 + RAID 10 | Permite seguir trabajando aunque falle un disco y mejora el rendimiento en acceso a datos. |
-| **SSD vs HDD** | SSD NVMe en puestos / HDD en servidor | Los SSD son rápidos para trabajar, mientras que los HDD permiten almacenar más datos a menor coste. |
-| **Backup externo** | Disco externo 8 TB | Copias de seguridad semanales para evitar pérdida de información. |
-| **SAI** | 2 unidades 1500VA | Protegen los equipos ante cortes de luz y permiten apagarlos correctamente. |
+| Elemento | Justificación |
+|:---|:---|
+| RAID 1 + 10 | Seguridad y continuidad |
+| SSD vs HDD | Velocidad vs capacidad |
+| Backup | Evitar pérdida de datos |
+| SAI | Protección eléctrica |
 
 ---
 
 ### 1.6 Periféricos
 
-| Periférico | Cantidad | Especificación | Justificación |
-|:---|:---:|:---|:---|
-| Monitor | 20 | 27" QHD | Permite trabajar con varias ventanas cómodamente. |
-| Monitor adicional | 10 | 24" FHD | Segundo monitor para desarrollo y soporte. Mejora la productividad. |
-| Teclado + Ratón | 20 | Inalámbrico | Mayor comodidad y menos cables. |
-| Auriculares | 15 | Con micrófono | Para reuniones y soporte técnico. |
-| Webcam | 15 | 1080p | Para videollamadas. |
+| Periférico | Cantidad | Justificación |
+|:---|:---:|:---|
+| Monitores | 20 | Trabajo cómodo |
+| Monitores extra | 10 | Más productividad |
+| Teclado/ratón | 20 | Uso general |
+| Auriculares | 15 | Comunicación |
+| Webcam | 15 | Videollamadas |
 
 ---
 
-### 1.7 Evolución y Mejora del Sistema
+### 1.7 Evolución
 
-Si la empresa crece, la infraestructura se puede ampliar sin cambiar todo el sistema:
-
-- Añadir más RAM a los equipos de desarrollo
-- Incorporar un segundo servidor para mejorar la disponibilidad
-- Ampliar el almacenamiento con más discos
-- Mejorar la red a 10Gbps si aumenta el tráfico
-
-También se podría combinar la infraestructura local con servicios en la nube para adaptarse mejor a picos de trabajo.
+Se podrá:
+- Ampliar RAM  
+- Añadir servidores  
+- Mejorar almacenamiento  
+- Escalar red  
 
 ---
 
 ## 2. Presupuesto
 
-| Equipo | Cantidad | Precio Unitario | Total |
-|:---|:---:|:---:|:---:|
-| HP OMEN 45L | 10 | 3.999 € | 39.990 € |
-| Dell OptiPlex 7020 | 10 | 739 € | 7.390 € |
-| Dell PowerEdge R450 | 1 | 3.856,88 € | 3.856,88 € |
-| SAI 1500VA | 2 | 850 € | 1.700 € |
-| Disco externo 8TB | 1 | 189 € | 189 € |
-| **TOTAL** | | | **53.125,88 €** |
+| Equipo | Proveedor | Cantidad | Precio | Total |
+|:---|:---|:---:|:---:|:---:|
+| HP OMEN 45L | HP / PcComponentes | 10 | 3.999 € | 39.990 € |
+| OptiPlex 7020 | Dell / Amazon | 10 | 739 € | 7.390 € |
+| PowerEdge R450 | Dell | 1 | 3.856,88 € | 3.856,88 € |
+| SAI | APC / Amazon | 2 | 850 € | 1.700 € |
+| Disco 8TB | Amazon | 1 | 189 € | 189 € |
+| **TOTAL** | | | | **53.125,88 €** |
+
+*Precios aproximados basados en configuraciones reales de mercado en 2025-2026. Pueden variar según proveedor y disponibilidad.*
 
 ---
 
-## 3. Conclusión
+## 3. Equipos utilizados
 
-La infraestructura propuesta cubre las necesidades de la empresa:
+### PC Administración
+![PC Administración](img/pc_admin_optiplex_1.png)
+![PC Administración](img/pc_admin_optiplex_2.png)
 
-- Los equipos de desarrollo permiten trabajar con cargas altas sin problemas
-- Los equipos administrativos son suficientes para su uso diario
-- El servidor centraliza los servicios y mejora la organización
-- El sistema es ampliable en el futuro sin grandes cambios
+### PC Desarrollo
+![PC Desarrollo](img/pc_desarrollo_omen45l_1.png)
+![PC Desarrollo](img/pc_desarrollo_omen45l_2.png)
 
-En general, se ha buscado un equilibrio entre rendimiento, coste y posibilidad de crecimiento.
+### Servidor
+![Servidor](img/servidor_r450_1.png)
+![Servidor](img/servidor_r450_2.png)
+
+---
+
+## 4. Conclusión
+
+La infraestructura cubre las necesidades de la empresa:
+
+- Equipos potentes para desarrollo  
+- Equipos equilibrados para administración  
+- Servidor centralizado  
+- Sistema escalable  
+
+Se ha buscado un equilibrio entre rendimiento, coste y crecimiento futuro.
