@@ -1,6 +1,6 @@
 # Descripción de la empresa
 
-"Esta infraestructura se ha diseñado para dar soporte a los servicios de desarrollo de software a medida y mantenimiento de aplicaciones definidos en la Descripción de la Empresa."
+Esta infraestructura se ha diseñado para dar soporte a los servicios de desarrollo de software a medida y mantenimiento de aplicaciones definidos en la descripcion_empresa.md.
 
 ## 1. Tipo de empresa
 La empresa simulada es una empresa de desarrollo de software especializada en la creación de aplicaciones web y soluciones empresariales a medida para clientes.
