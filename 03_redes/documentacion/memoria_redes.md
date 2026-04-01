@@ -231,14 +231,14 @@ Se realizaron pruebas de conectividad entre todas las VLANs y dispositivos WiFi,
 
 | Prueba | Resultado |
 |:---|:---:|
-| Ping Admin-1 → Servidor-DC | ✅ Éxito |
-| Ping Dev-1 → Admin-1 | ❌ Bloqueado (ACL) |
-| Ping Form-1 → Dir-1 | ❌ Bloqueado (ACL) |
-| Ping Dev-1 → Soporte-1 | ✅ Éxito |
-| WiFi empleados → Gateway VLAN 30 | ✅ Éxito |
-| WiFi invitados → Gateway VLAN 70 | ✅ Éxito |
-| WiFi invitados → Red interna | ❌ Bloqueado |
-| Ping Admin-1 → 8.8.8.8 | ✅ Éxito (NAT) |
+| Ping Admin-1 → Servidor-DC | Éxito |
+| Ping Dev-1 → Admin-1 | Bloqueado (ACL) |
+| Ping Form-1 → Dir-1 | Bloqueado (ACL) |
+| Ping Dev-1 → Soporte-1 | Éxito |
+| WiFi empleados → Gateway VLAN 30 | Éxito |
+| WiFi invitados → Gateway VLAN 70 | Éxito |
+| WiFi invitados → Red interna | Bloqueado |
+| Ping Admin-1 → 8.8.8.8 | Éxito (NAT) |
 
 ![Verificación final DHCP y Ping](img/verificacion_final_DHCP_y_Ping_DEV.png)
 
@@ -263,4 +263,3 @@ El CPD se ubica en Planta Baja y cuenta con:
 - Control de acceso y temperatura para garantizar disponibilidad 24/7
 
 Todas las configuraciones han sido documentadas con capturas de pantalla y pruebas de funcionamiento, demostrando la correcta implementación de VLANs, enrutamiento inter-VLAN, DHCP, ACLs y WiFi.
-
