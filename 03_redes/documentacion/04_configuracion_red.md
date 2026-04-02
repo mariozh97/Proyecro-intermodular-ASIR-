@@ -84,7 +84,7 @@ La asignación realizada es la siguiente:
 - VLAN 30 (DEV): Fa0/1-2 en SW-Acceso-P1  
 - VLAN 40 (SOPORTE): Fa0/11-12 en SW-Acceso-P1  
 - VLAN 50 (FORMACION): Fa0/16-17 en SW-Acceso-P1  
-- VLAN 50 (Access Point): Fa0/10 en SW-Acceso-P1  
+- VLAN 50 (Access Point): Fa0/10 en SW-Acceso-P1 (compartiendo VLAN con el aula de formación)  
 
 - VLAN 60 (SRV): Fa0/21-23 en SW-Principal  
 
@@ -107,3 +107,47 @@ Se ha comprobado que los puertos de los switches se encuentran correctamente asi
 show vlan brief
 
 Los resultados confirman que cada departamento está correctamente segmentado dentro de la red.
+
+---
+
+### 4.8 Configuración de enrutamiento inter-VLAN
+
+Para permitir la comunicación entre las diferentes VLANs, se ha implementado enrutamiento inter-VLAN mediante la técnica conocida como Router-on-a-stick.
+
+Se han configurado subinterfaces en el router, una por cada VLAN, asignando a cada una una dirección IP que actúa como gateway de su red.
+
+Cada subinterfaz está asociada a su correspondiente VLAN mediante el protocolo IEEE 802.1Q.
+
+---
+
+### 4.9 Direccionamiento del router
+
+Se han configurado las siguientes direcciones IP en el router:
+
+- VLAN 10 → 192.168.10.1  
+- VLAN 20 → 192.168.20.1  
+- VLAN 30 → 192.168.30.1  
+- VLAN 40 → 192.168.40.1  
+- VLAN 50 → 192.168.50.1  
+- VLAN 60 → 192.168.60.1  
+- VLAN 99 → 192.168.99.1  
+
+Estas direcciones actúan como puerta de enlace predeterminada para los dispositivos de cada VLAN.
+
+---
+
+### 4.10 Evidencia de configuración
+
+A continuación se muestra la verificación de las subinterfaces configuradas en el router mediante el comando:
+
+show ip interface brief
+
+![Subinterfaces del router](capturas/07_router_subinterfaces.png)
+
+---
+
+### 4.11 Verificación
+
+Se ha comprobado que todas las subinterfaces del router se encuentran en estado "up/up", lo que indica que el enrutamiento inter-VLAN está correctamente configurado.
+
+Esto permite la comunicación entre las distintas redes de la infraestructura.
