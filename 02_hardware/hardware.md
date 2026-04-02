@@ -29,15 +29,18 @@ He optado por un solo servidor físico porque voy a utilizar virtualización, lo
 Para los equipos de desarrollo e IT he elegido una configuración basada en workstations como la Dell Precision 3660.
 
 ![Workstation](capturas/precision3660.jpeg)
-*Figura: Estación de trabajo Dell Precision 3660*
+Estación de trabajo Dell Precision 3660*
 
 | Componente | Especificación | Justificación |
 |:---|:---|:---|
 | CPU | Intel Core i9-14900K | 24 núcleos, ideal para compilación y virtualización |
+| Placa base | Chipset Z790 | Permite aprovechar CPUs de alto rendimiento y futuras ampliaciones |
 | RAM | 64 GB DDR5 | Permite ejecutar múltiples máquinas virtuales |
 | Almacenamiento | 2 TB SSD NVMe | Alta velocidad en carga de proyectos |
 | GPU | RTX 4070 | Útil en proyectos gráficos o IA |
 | Fuente | 850W 80+ Gold | Estabilidad energética |
+
+Los equipos de alto rendimiento disponen de ranuras PCIe que permiten añadir tarjetas de expansión como GPU adicionales o tarjetas de red, lo que facilita futuras ampliaciones.
 
 En este caso he priorizado bastante la RAM, ya que en desarrollo es más importante poder levantar entornos completos que tener una gráfica muy potente.
 
@@ -48,11 +51,12 @@ En este caso he priorizado bastante la RAM, ya que en desarrollo es más importa
 Para administración, dirección, soporte y formación he elegido equipos tipo Dell OptiPlex.
 
 ![PC estándar](capturas/optiplex.jpg)
-*Figura: Equipo de oficina Dell OptiPlex*
+*Equipo de oficina Dell OptiPlex*
 
 | Componente | Especificación | Justificación |
 |:---|:---|:---|
 | CPU | Intel Core i5-14500 | Buen rendimiento general |
+| Placa base | Chipset Q670 | Diseñada para entornos empresariales, estable y con opciones de gestión |
 | RAM | 16 GB | Suficiente para multitarea |
 | Almacenamiento | 512 GB SSD | Arranque rápido y fluidez |
 | Formato | SFF | Ocupa poco espacio |
@@ -68,7 +72,8 @@ El servidor es el núcleo de la infraestructura. Aquí es donde se ejecutan todo
 He elegido un Dell PowerEdge R660.
 
 ![Servidor](capturas/servidor_r660.png)
-*Figura: Servidor Dell PowerEdge R660*
+*Servidor Dell PowerEdge R660*
+
 
 | Componente | Especificación |
 |:---|:---|
@@ -99,6 +104,7 @@ Dentro del servidor físico se ejecutan:
 
 Esto permite tener los mismos servicios que en la red (Packet Tracer) pero sin necesidad de 3 servidores físicos.
 
+Además, facilita la administración y permite migrar servicios entre máquinas virtuales en caso de fallo.
 ---
 
 ## 1.6 Sistema de almacenamiento
@@ -120,8 +126,10 @@ Se sigue la regla 3-2-1:
 - NAS  
 - Copia externa  
 
+El NAS permite separar las copias de seguridad del servidor principal, evitando que un fallo en el servidor afecte también a los backups.
+
 ![NAS](capturas/nas_synology.png)
-*Figura: NAS Synology para copias de seguridad*
+*NAS Synology para copias de seguridad*
 
 ---
 
@@ -133,7 +141,7 @@ Para proteger el sistema:
 - Rack 19” de 22U  
 
 ![Rack](capturas/rack_22u.jpg)
-*Figura: Armario rack 19” de 22U*
+*Armario rack 19” de 22U*
 
 El rack permite organizar todo el equipamiento del CPD y facilita bastante el mantenimiento.
 
