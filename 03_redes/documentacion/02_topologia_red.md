@@ -23,7 +23,7 @@ La red se organiza en dos plantas:
 
 ### Primera planta
 - Switch de acceso P1
-- Equipos de Desarrollo, Soporte y Aula
+- Equipos de Desarrollo, Soporte técnico y Aula de formación
 
 ---
 
@@ -33,17 +33,17 @@ La red estará formada por:
 
 - 1 Router (salida a Internet)
 - 1 Switch principal
-- 2 Switches de acceso
+- 2 Switches de acceso (uno por planta)
 - 1 Punto de acceso WiFi
 - 3 Servidores
-- 20 PCs
+- 20 PCs (representados de forma agrupada en el diagrama)
 
 ---
 
 ## 2.4 Conexiones de red
 
-- Los PCs se conectan a los switches de acceso
-- Los switches de acceso se conectan al switch principal mediante enlaces troncales
+- Los PCs se conectan a los switches de acceso mediante enlaces de tipo access
+- Los switches de acceso se conectan al switch principal mediante enlaces troncales (trunk)
 - El switch principal se conecta al router
 - El punto de acceso se conecta a un switch de acceso
 - Los servidores se conectan al switch principal
@@ -52,7 +52,7 @@ La red estará formada por:
 
 ## 2.5 Conexión a Internet
 
-El router actúa como gateway de la red y proporciona salida a Internet.
+El router actúa como gateway de la red, proporcionando salida a Internet.
 
 Se conecta al proveedor de servicios (ISP) mediante una interfaz WAN, permitiendo el acceso a recursos externos.
 
@@ -79,7 +79,7 @@ Para organizar la red y mejorar la seguridad, se utilizarán las siguientes VLAN
 En la red se utilizarán dos tipos de enlaces:
 
 - **Enlaces troncales (trunk):**  
-  Se utilizan entre switches y entre el switch principal y el router. Permiten transportar múltiples VLANs.
+  Se utilizan entre switches y entre el switch principal y el router. Permiten transportar múltiples VLANs mediante el protocolo 802.1Q.
 
 - **Enlaces de acceso (access):**  
   Se utilizan para conectar dispositivos finales como PCs, servidores y puntos de acceso. Cada puerto pertenece a una única VLAN.
@@ -90,6 +90,14 @@ En la red se utilizarán dos tipos de enlaces:
 
 La utilización de una topología jerárquica permite organizar la red de forma clara y facilitar su ampliación en el futuro.
 
-El uso de VLANs mejora la seguridad y reduce el tráfico innecesario en la red.
+El uso de VLANs mejora la seguridad y reduce el tráfico innecesario dentro de la red.
 
-La separación en capas (acceso, distribución y núcleo) facilita la administración y resolución de problemas.
+La separación en capas (acceso, distribución y núcleo) facilita la administración, mantenimiento y resolución de problemas.
+
+---
+
+## 2.9 Diagrama de la topología
+
+A continuación se muestra el diagrama lógico de la red diseñado para la empresa:
+
+![Diagrama de red](02_topologia_logica.png)
