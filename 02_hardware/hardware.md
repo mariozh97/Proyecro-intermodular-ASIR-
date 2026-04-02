@@ -1,5 +1,7 @@
 # Memoria Técnica de Hardware - Proyecto Intermodular ASIR
 
+---
+
 ## 1. Análisis de necesidades y dimensionamiento
 
 La empresa para la que he diseñado esta infraestructura es una empresa de desarrollo de software con 20 empleados repartidos en varios departamentos: desarrollo (8), administración (3), dirección (2), soporte (3), formación (2) e infraestructura IT (2).
@@ -26,6 +28,9 @@ He optado por un solo servidor físico porque voy a utilizar virtualización, lo
 
 Para los equipos de desarrollo e IT he elegido una configuración basada en workstations como la Dell Precision 3660.
 
+![Workstation](img/precision3660.jpeg)
+*Figura: Estación de trabajo Dell Precision 3660*
+
 | Componente | Especificación | Justificación |
 |:---|:---|:---|
 | CPU | Intel Core i9-14900K | 24 núcleos, ideal para compilación y virtualización |
@@ -34,13 +39,16 @@ Para los equipos de desarrollo e IT he elegido una configuración basada en work
 | GPU | RTX 4070 | Útil en proyectos gráficos o IA |
 | Fuente | 850W 80+ Gold | Estabilidad energética |
 
-En este caso he priorizado bastante la RAM, ya que en desarrollo es más importante poder levantar entornos completos que tener potencia gráfica.
+En este caso he priorizado bastante la RAM, ya que en desarrollo es más importante poder levantar entornos completos que tener una gráfica muy potente.
 
 ---
 
 ## 1.3 Equipos de perfil medio
 
 Para administración, dirección, soporte y formación he elegido equipos tipo Dell OptiPlex.
+
+![PC estándar](img/optiplex.jpg)
+*Figura: Equipo de oficina Dell OptiPlex*
 
 | Componente | Especificación | Justificación |
 |:---|:---|:---|
@@ -59,6 +67,9 @@ El servidor es el núcleo de la infraestructura. Aquí es donde se ejecutan todo
 
 He elegido un Dell PowerEdge R660.
 
+![Servidor](img/servidor_r660.png)
+*Figura: Servidor Dell PowerEdge R660*
+
 | Componente | Especificación |
 |:---|:---|
 | CPU | 2x Intel Xeon Silver |
@@ -68,7 +79,7 @@ He elegido un Dell PowerEdge R660.
 | Red | 2x 1GbE |
 | Fuente | Redundante |
 
-He aumentado la RAM respecto a configuraciones básicas porque este servidor va a soportar varias máquinas virtuales.
+He aumentado la RAM porque este servidor va a soportar varias máquinas virtuales al mismo tiempo.
 
 ---
 
@@ -102,8 +113,11 @@ He elegido RAID 10 porque ofrece un buen equilibrio entre rendimiento y segurida
 Se sigue la regla 3-2-1:
 
 - Servidor de backup  
-- NAS (ej. Synology DS923+)  
+- NAS  
 - Copia externa  
+
+![NAS](img/nas_synology.png)
+*Figura: NAS Synology para copias de seguridad*
 
 ---
 
@@ -114,14 +128,10 @@ Para proteger el sistema:
 - SAI APC Smart-UPS  
 - Rack 19” de 22U  
 
-En el rack se alojan:
+![Rack](img/rack_22u.jpg)
+*Figura: Armario rack 19” de 22U*
 
-- Servidor  
-- Router  
-- Switches  
-- SAI  
-
-Esto facilita mantenimiento y organización.
+El rack permite organizar todo el equipamiento del CPD y facilita bastante el mantenimiento.
 
 ---
 
@@ -166,11 +176,11 @@ Los precios son aproximados y pueden variar según configuración y proveedor.
 
 ## 3. Conclusión
 
-Creo que esta infraestructura está bien equilibrada:
+Creo que la infraestructura está bastante equilibrada:
 
 - Los equipos de desarrollo tienen potencia suficiente  
-- El servidor centraliza todo  
-- La red y el hardware están conectados  
-- Se puede ampliar sin problemas  
+- El servidor centraliza todos los servicios  
+- La red y el hardware están alineados  
+- Se puede ampliar sin tener que rehacer todo  
 
-He intentado no sobredimensionar demasiado, pero tampoco quedarme corto, pensando en que la empresa pueda crecer.
+He intentado buscar un equilibrio entre rendimiento y coste, pensando en una empresa real que pueda crecer con el tiempo.
