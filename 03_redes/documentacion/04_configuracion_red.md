@@ -114,7 +114,9 @@ Los resultados confirman que cada departamento está correctamente segmentado de
 
 Para permitir la comunicación entre las diferentes VLANs, se ha implementado enrutamiento inter-VLAN mediante la técnica conocida como Router-on-a-stick.
 
-Se han configurado subinterfaces en el router, una por cada VLAN, asignando a cada una una dirección IP que actúa como gateway de su red.
+Esta decisión se ha tomado debido a que el switch principal (Cisco 2960) no dispone de capacidades de capa 3, por lo que no puede realizar enrutamiento entre VLANs.
+
+Por este motivo, el enrutamiento se realiza en el router mediante subinterfaces, una por cada VLAN.
 
 Cada subinterfaz está asociada a su correspondiente VLAN mediante el protocolo IEEE 802.1Q.
 
