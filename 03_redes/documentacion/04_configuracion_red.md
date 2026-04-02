@@ -112,7 +112,7 @@ Los resultados confirman que cada departamento está correctamente segmentado de
 
 ### 4.8 Configuración de enrutamiento inter-VLAN
 
-Para permitir la comunicación entre las diferentes VLANs, se ha implementado enrutamiento inter-VLAN mediante la técnica conocida como Router-on-a-stick.
+Para permitir la comunicación entre las diferentes VLANs, se ha implementado enrutamiento inter-VLAN mediante la técnica Router-on-a-stick.
 
 Esta decisión se ha tomado debido a que el switch principal (Cisco 2960) no dispone de capacidades de capa 3, por lo que no puede realizar enrutamiento entre VLANs.
 
