@@ -81,6 +81,10 @@ He elegido un Dell PowerEdge R660.
 
 He aumentado la RAM porque este servidor va a soportar varias máquinas virtuales al mismo tiempo.
 
+Se ha optado por memoria RAM ECC (Error Correcting Code) en el servidor para evitar errores de memoria que puedan afectar a los datos, algo especialmente importante en entornos virtualizados donde se ejecutan varios servicios críticos.
+
+Aunque esta configuración puede parecer algo elevada, he preferido asegurar margen suficiente para virtualización, evitando problemas de rendimiento a corto plazo.
+
 ---
 
 ## 1.5 Virtualización
@@ -160,7 +164,8 @@ Si la empresa crece:
 
 ## 2. Presupuesto estimado (orientativo)
 
-Los precios son aproximados y pueden variar según configuración y proveedor.
+Los precios son orientativos y pueden variar según proveedor y configuración concreta.  
+Por ejemplo, el servidor puede oscilar entre 6.000 € y 8.000 € dependiendo de la cantidad de RAM, discos y soporte contratado.
 
 | Equipo | Cantidad | Precio | Total |
 |--------|----------|--------|-------|
