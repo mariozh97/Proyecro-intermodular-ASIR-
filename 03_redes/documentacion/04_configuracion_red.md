@@ -61,3 +61,49 @@ Se ha comprobado el correcto funcionamiento de la configuración mediante los si
 - Correspondencia entre VLANs creadas y diseño de red  
 
 Los resultados obtenidos confirman que la segmentación de red se ha implementado correctamente y que la infraestructura está preparada para continuar con la asignación de puertos y configuración de servicios de red.
+
+---
+
+### 4.4 Asignación de puertos a VLANs
+
+Se ha procedido a la asignación de los puertos de los switches a sus correspondientes VLANs según el departamento al que pertenecen.
+
+Para ello se ha configurado cada puerto en modo access y se le ha asignado la VLAN correspondiente.
+
+Esto permite que cada equipo de la red quede correctamente segmentado y aislado del resto de departamentos.
+
+---
+
+### 4.5 Detalle de asignación de puertos
+
+La asignación realizada es la siguiente:
+
+- VLAN 10 (ADMIN): Fa0/1-2 en SW-Acceso-PB  
+- VLAN 20 (DIR): Fa0/6-7 en SW-Acceso-PB  
+
+- VLAN 30 (DEV): Fa0/1-2 en SW-Acceso-P1  
+- VLAN 40 (SOPORTE): Fa0/11-12 en SW-Acceso-P1  
+- VLAN 50 (FORMACION): Fa0/16-17 en SW-Acceso-P1  
+- VLAN 50 (Access Point): Fa0/10 en SW-Acceso-P1  
+
+- VLAN 60 (SRV): Fa0/21-23 en SW-Principal  
+
+---
+
+### 4.6 Evidencias de configuración
+
+A continuación se muestran las capturas que verifican la correcta asignación de puertos a VLANs:
+
+![Asignación VLAN - Planta Baja](capturas/06_asignacion_vlan_pb.png)
+
+![Asignación VLAN - Planta 1](capturas/06_asignacion_vlan_p1.png)
+
+---
+
+### 4.7 Verificación
+
+Se ha comprobado que los puertos de los switches se encuentran correctamente asignados a sus respectivas VLANs mediante el comando:
+
+show vlan brief
+
+Los resultados confirman que cada departamento está correctamente segmentado dentro de la red.
