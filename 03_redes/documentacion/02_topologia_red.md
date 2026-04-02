@@ -6,7 +6,7 @@ Se ha elegido una topología jerárquica, ya que es la más utilizada en entorno
 Esta topología se divide en:
 
 - Capa de acceso (switches por planta)  
-- Capa de distribución (switch principal)  
+- Capa de distribución (switch principal capa 2)
 - Capa de salida (router)  
 
 ---
@@ -50,8 +50,11 @@ Los servidores se conectan al switch principal.
 
 ---
 
-### 2.5 Conexión a Internet
-El router actúa como gateway de la red, proporcionando salida a Internet.
+### 2.5 Conexión a Internet y enrutamiento
+
+El router actúa como gateway de la red, proporcionando salida a Internet mediante NAT.
+
+Además, se encarga del enrutamiento entre VLANs utilizando la técnica router-on-a-stick, mediante subinterfaces asociadas a cada VLAN.
 
 Se conecta al proveedor de servicios (ISP) mediante una interfaz WAN, permitiendo el acceso a recursos externos.
 
@@ -147,7 +150,7 @@ Las conexiones principales son:
 | SW-Acceso-P1 | Fa0/1, Fa0/2 | 30 (DEV) | PCs Desarrollo |
 | SW-Acceso-P1 | Fa0/11, Fa0/12 | 40 (SOPORTE) | PCs Soporte |
 | SW-Acceso-P1 | Fa0/16, Fa0/17 | 50 (FORMACION) | PCs Aula |
-| SW-Acceso-P1 | Fa0/10 | - | Access Point |
+|  SW-Acceso-P1 | Fa0/10 | VLAN 30 (EMPRESA) | Access Point |
 | SW-Principal | Fa0/21-23 | 60 (SRV) | Servidores |
 
 ---
