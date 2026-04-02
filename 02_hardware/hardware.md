@@ -1,253 +1,176 @@
 # Memoria Técnica de Hardware - Proyecto Intermodular ASIR
 
----
+## 1. Análisis de necesidades y dimensionamiento
 
-## 1. Análisis de necesidades de hardware
+La empresa para la que he diseñado esta infraestructura es una empresa de desarrollo de software con 20 empleados repartidos en varios departamentos: desarrollo (8), administración (3), dirección (2), soporte (3), formación (2) e infraestructura IT (2).
 
-La empresa es una compañía de desarrollo de software con 20 empleados distribuidos en los siguientes departamentos:
+No todos los departamentos tienen las mismas necesidades. Los de desarrollo e IT necesitan equipos bastante más potentes, ya que trabajan con máquinas virtuales, contenedores Docker y compilación de código. En cambio, los departamentos de administración, dirección, soporte y formación pueden trabajar con equipos más sencillos.
 
-- Desarrollo (8)
-- Infraestructura IT (2)
-- Administración (3)
-- Dirección (2)
-- Soporte técnico (3)
-- Formación (2)
-
-Cada departamento presenta necesidades diferentes:
-
-- **Desarrollo e IT** → alto rendimiento (máquinas virtuales, contenedores, compilación)
-- **Administración, dirección, soporte y formación** → uso ofimático y aplicaciones de gestión
-- **CPD** → ejecución de servicios críticos de la empresa
-
-La infraestructura debe ser:
-
-- Escalable  
-- Segura  
-- Preparada para trabajo continuo  
+Por eso he decidido diferenciar dos tipos de equipos, además de un servidor central que gestionará todos los servicios de la empresa.
 
 ---
 
-## 2. Inventario de equipos
+## 1.1 Inventario de equipos
 
-| Tipo de equipo | Cantidad | Uso |
+| Tipo de Equipo | Cantidad | Destino |
 |:---|:---:|:---|
-| Estaciones de alto rendimiento | 10 | Desarrollo + IT |
-| Estaciones estándar | 10 | Administración, dirección, soporte, formación |
-| Servidor físico (virtualización) | 1 | CPD |
-| Equipamiento de red | Varios | Router, switches, AP |
+| Alto Rendimiento | 10 | Desarrollo (8) + IT (2) |
+| Perfil Medio | 10 | Administración, Dirección, Soporte, Formación |
+| Servidor físico | 1 | CPD (virtualización) |
+
+He optado por un solo servidor físico porque voy a utilizar virtualización, lo que permite tener varios servidores sin necesidad de comprar hardware adicional.
 
 ---
 
-## 3. Distribución por departamento
+## 1.2 Equipos de alto rendimiento
 
-| Departamento | Equipos |
-|-------------|--------|
-| Desarrollo | 8 |
-| IT | 2 |
-| Administración | 3 |
-| Dirección | 2 |
-| Soporte técnico | 3 |
-| Formación | 2 |
-| **TOTAL** | **20 equipos** |
+Para los equipos de desarrollo e IT he elegido una configuración basada en workstations como la Dell Precision 3660.
+
+| Componente | Especificación | Justificación |
+|:---|:---|:---|
+| CPU | Intel Core i9-14900K | 24 núcleos, ideal para compilación y virtualización |
+| RAM | 64 GB DDR5 | Permite ejecutar múltiples máquinas virtuales |
+| Almacenamiento | 2 TB SSD NVMe | Alta velocidad en carga de proyectos |
+| GPU | RTX 4070 | Útil en proyectos gráficos o IA |
+| Fuente | 850W 80+ Gold | Estabilidad energética |
+
+En este caso he priorizado bastante la RAM, ya que en desarrollo es más importante poder levantar entornos completos que tener potencia gráfica.
 
 ---
 
-## 4. Estaciones de trabajo
+## 1.3 Equipos de perfil medio
 
-### 4.1 Perfil de alto rendimiento
+Para administración, dirección, soporte y formación he elegido equipos tipo Dell OptiPlex.
 
-Destinadas a desarrollo y administración de sistemas.
+| Componente | Especificación | Justificación |
+|:---|:---|:---|
+| CPU | Intel Core i5-14500 | Buen rendimiento general |
+| RAM | 16 GB | Suficiente para multitarea |
+| Almacenamiento | 512 GB SSD | Arranque rápido y fluidez |
+| Formato | SFF | Ocupa poco espacio |
+
+Son equipos equilibrados, suficientes para el trabajo diario sin necesidad de sobredimensionar.
+
+---
+
+## 1.4 Servidor (CPD)
+
+El servidor es el núcleo de la infraestructura. Aquí es donde se ejecutan todos los servicios.
+
+He elegido un Dell PowerEdge R660.
 
 | Componente | Especificación |
 |:---|:---|
-| CPU | 16–24 núcleos (ej. Intel i9-14900K / Ryzen 9 7950X) |
-| RAM | 64 GB DDR5 |
-| Almacenamiento | 1–2 TB SSD NVMe |
-| GPU | Opcional según proyecto |
-| Red | 1 Gbps |
-
-**Justificación:**
-
-- Permiten ejecutar múltiples máquinas virtuales  
-- Soportan entornos Docker  
-- Facilitan compilación intensiva  
-
----
-
-### 4.2 Perfil estándar
-
-Destinadas a tareas de gestión y soporte.
-
-| Componente | Especificación |
-|:---|:---|
-| CPU | 6–10 núcleos (ej. Intel i5-13500) |
-| RAM | 16 GB |
-| Almacenamiento | 512 GB SSD |
-| Red | 1 Gbps |
-
-**Justificación:**
-
-- Suficiente para tareas ofimáticas  
-- Bajo coste y consumo  
-- Alta estabilidad  
-
----
-
-## 5. Servidor del CPD
-
-El CPD centraliza los servicios críticos de la empresa.
-
-### Configuración física
-
-| Componente | Especificación |
-|:---|:---|
-| CPU | 1–2 procesadores Xeon |
-| RAM | 64–128 GB ECC |
-| Almacenamiento SO | 2x SSD (RAID 1) |
-| Almacenamiento datos | 4–6 HDD SAS (RAID 10) |
+| CPU | 2x Intel Xeon Silver |
+| RAM | 128 GB ECC |
+| Almacenamiento SO | 2x 480GB SSD RAID 1 |
+| Datos | 4x 2TB SAS RAID 10 |
 | Red | 2x 1GbE |
 | Fuente | Redundante |
 
----
-
-### 5.1 Virtualización
-
-Se implementa virtualización mediante **Proxmox VE**, permitiendo ejecutar múltiples servidores sobre un único equipo físico.
-
-Máquinas virtuales desplegadas:
-
-- **SRV-AD/DNS/DHCP** → gestión de red y usuarios  
-- **SRV-WEB** → alojamiento de aplicaciones  
-- **SRV-BACKUP** → gestión de copias de seguridad  
-
-**Ventajas:**
-
-- Optimización de recursos  
-- Reducción de costes  
-- Escalabilidad  
-- Aislamiento de servicios  
+He aumentado la RAM respecto a configuraciones básicas porque este servidor va a soportar varias máquinas virtuales.
 
 ---
 
-## 6. Sistema de almacenamiento
+## 1.5 Virtualización
 
-| Tipo | Uso |
+Para optimizar recursos, he decidido usar Proxmox VE.
+
+Dentro del servidor físico se ejecutan:
+
+- SRV-AD/DNS/DHCP  
+- SRV-WEB  
+- SRV-BACKUP  
+
+Esto permite tener los mismos servicios que en la red (Packet Tracer) pero sin necesidad de 3 servidores físicos.
+
+---
+
+## 1.6 Sistema de almacenamiento
+
+| Elemento | Uso |
 |:---|:---|
-| SSD NVMe | Sistemas cliente |
-| HDD SAS | Datos empresariales |
-| RAID 1 | Sistema operativo |
-| RAID 10 | Datos críticos |
+| SSD NVMe | Equipos cliente |
+| HDD SAS | Datos del servidor |
+| RAID 1 | Sistema |
+| RAID 10 | Datos |
+
+He elegido RAID 10 porque ofrece un buen equilibrio entre rendimiento y seguridad.
 
 ### Copias de seguridad
 
-Se implementa una estrategia **3-2-1**:
+Se sigue la regla 3-2-1:
 
-- 3 copias de los datos  
-- 2 soportes distintos  
-- 1 copia fuera del sistema principal  
-
-Infraestructura de backup:
-
-- Servidor de backup dedicado  
-- NAS para almacenamiento secundario  
-- Copia externa adicional  
+- Servidor de backup  
+- NAS (ej. Synology DS923+)  
+- Copia externa  
 
 ---
 
-## 7. Alimentación y protección
+## 1.7 Alimentación y rack
 
-- Sistemas de alimentación ininterrumpida (SAI)  
-- Protección frente a cortes eléctricos  
-- Apagado controlado de servidores  
+Para proteger el sistema:
 
----
+- SAI APC Smart-UPS  
+- Rack 19” de 22U  
 
-## 7.1 Alojamiento físico (Rack)
+En el rack se alojan:
 
-Todo el equipamiento crítico se aloja en un armario rack estándar de 19 pulgadas ubicado en el CPD.
-
-**Características:**
-
-- Altura: 22U  
-- Estructura metálica ventilada  
-- Puerta frontal con cierre de seguridad  
-- Gestión de cableado vertical y horizontal  
-- Bandejas para equipos  
-
-**Equipos alojados:**
-
-- Servidor principal  
+- Servidor  
 - Router  
-- Switch principal  
-- Switches de acceso  
+- Switches  
 - SAI  
 
-**Justificación:**
-
-- Mejora la organización del cableado  
-- Facilita el mantenimiento  
-- Optimiza la ventilación  
-- Aumenta la seguridad física  
+Esto facilita mantenimiento y organización.
 
 ---
 
-## 8. Periféricos
+## 1.8 Equipamiento de red
 
-- Monitores duales en desarrollo  
-- Teclado y ratón ergonómicos  
-- Auriculares con micrófono  
-- Webcam para videoconferencias  
+| Dispositivo | Modelo |
+|------------|--------|
+| Router | Cisco 2911 |
+| Switches | Cisco 2960 |
+| Access Point | AP empresarial |
 
----
-
-## 9. Equipamiento de red
-
-| Dispositivo | Modelo | Cantidad |
-|------------|--------|----------|
-| Router | Cisco 2911 | 1 |
-| Switch principal | Cisco Catalyst 2960 | 1 |
-| Switch acceso | Cisco Catalyst 2960 | 2 |
-| Punto de acceso | AP empresarial | 1 |
+Es el mismo equipamiento que se ha utilizado en la práctica de redes.
 
 ---
 
-## 10. Escalabilidad y evolución
+## 1.9 Evolución del sistema
 
-La infraestructura permite crecimiento sin rediseño:
+Si la empresa crece:
 
-- Ampliación de RAM  
-- Nuevos servidores  
-- Implementación de NAS  
-- Integración con cloud  
-- Escalado horizontal  
-
----
-
-## 11. Presupuesto estimado (orientativo)
-
-Los precios indicados son estimaciones basadas en configuraciones reales del mercado profesional en 2025–2026.  
-El coste final puede variar según proveedor, configuración específica y condiciones de compra.
-
-| Equipo | Modelo | Cantidad | Precio unitario | Total |
-|--------|--------|----------|-----------------|-------|
-| Estación alto rendimiento | Dell Precision 3660 | 10 | 2.500 € | 25.000 € |
-| Estación estándar | Dell OptiPlex | 10 | 800 € | 8.000 € |
-| Servidor | Dell PowerEdge R660 | 1 | 6.000 € | 6.000 € |
-| NAS | Synology DS923+ | 1 | 700 € | 700 € |
-| Discos NAS | 4x 4TB | 1 | 400 € | 400 € |
-| SAI | APC Smart-UPS | 2 | 800 € | 1.600 € |
-
-**TOTAL ESTIMADO: 41.700 €**
+- Añadir segundo servidor  
+- Ampliar RAM  
+- Incorporar NAS dedicado  
+- Usar cloud híbrido  
 
 ---
 
-## 12. Conclusión
+## 2. Presupuesto estimado (orientativo)
 
-La infraestructura propuesta proporciona:
+Los precios son aproximados y pueden variar según configuración y proveedor.
 
-- Rendimiento adecuado  
-- Alta disponibilidad  
-- Seguridad  
-- Escalabilidad  
+| Equipo | Cantidad | Precio | Total |
+|--------|----------|--------|-------|
+| Workstation | 10 | 2.500 € | 25.000 € |
+| PC estándar | 10 | 800 € | 8.000 € |
+| Servidor | 1 | 6.000 € | 6.000 € |
+| NAS | 1 | 700 € | 700 € |
+| SAI | 2 | 800 € | 1.600 € |
 
-Se ha diseñado un sistema equilibrado, profesional y coherente con el resto del proyecto intermodular.
+**TOTAL: 41.300 €**
+
+---
+
+## 3. Conclusión
+
+Creo que esta infraestructura está bien equilibrada:
+
+- Los equipos de desarrollo tienen potencia suficiente  
+- El servidor centraliza todo  
+- La red y el hardware están conectados  
+- Se puede ampliar sin problemas  
+
+He intentado no sobredimensionar demasiado, pero tampoco quedarme corto, pensando en que la empresa pueda crecer.
