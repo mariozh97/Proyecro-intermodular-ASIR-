@@ -103,8 +103,8 @@ Dentro del servidor físico se ejecutan:
 - SRV-BACKUP  
 
 Esto permite tener los mismos servicios que en la red (Packet Tracer) pero sin necesidad de 3 servidores físicos.
-
 Además, facilita la administración y permite migrar servicios entre máquinas virtuales en caso de fallo.
+
 ---
 
 ## 1.6 Sistema de almacenamiento
