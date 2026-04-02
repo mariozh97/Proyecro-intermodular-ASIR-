@@ -28,7 +28,7 @@ He optado por un solo servidor físico porque voy a utilizar virtualización, lo
 
 Para los equipos de desarrollo e IT he elegido una configuración basada en workstations como la Dell Precision 3660.
 
-![Workstation](img/precision3660.jpeg)
+![Workstation](capturas/precision3660.jpeg)
 *Figura: Estación de trabajo Dell Precision 3660*
 
 | Componente | Especificación | Justificación |
@@ -47,7 +47,7 @@ En este caso he priorizado bastante la RAM, ya que en desarrollo es más importa
 
 Para administración, dirección, soporte y formación he elegido equipos tipo Dell OptiPlex.
 
-![PC estándar](img/optiplex.jpg)
+![PC estándar](capturas/optiplex.jpg)
 *Figura: Equipo de oficina Dell OptiPlex*
 
 | Componente | Especificación | Justificación |
@@ -67,7 +67,7 @@ El servidor es el núcleo de la infraestructura. Aquí es donde se ejecutan todo
 
 He elegido un Dell PowerEdge R660.
 
-![Servidor](img/servidor_r660.png)
+![Servidor](capturas/servidor_r660.png)
 *Figura: Servidor Dell PowerEdge R660*
 
 | Componente | Especificación |
@@ -116,7 +116,7 @@ Se sigue la regla 3-2-1:
 - NAS  
 - Copia externa  
 
-![NAS](img/nas_synology.png)
+![NAS](capturas/nas_synology.png)
 *Figura: NAS Synology para copias de seguridad*
 
 ---
@@ -128,7 +128,7 @@ Para proteger el sistema:
 - SAI APC Smart-UPS  
 - Rack 19” de 22U  
 
-![Rack](img/rack_22u.jpg)
+![Rack](capturas/rack_22u.jpg)
 *Figura: Armario rack 19” de 22U*
 
 El rack permite organizar todo el equipamiento del CPD y facilita bastante el mantenimiento.
