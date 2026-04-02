@@ -100,4 +100,4 @@ La separación en capas (acceso, distribución y núcleo) facilita la administra
 
 A continuación se muestra el diagrama lógico de la red diseñado para la empresa:
 
-![Diagrama de red](02_topologia_logica.png)
+![Diagrama de red](./02_topologia_logica.png)
