@@ -183,3 +183,39 @@ Se ha verificado la comunicación entre diferentes VLANs mediante el uso del com
 Los resultados confirman que los dispositivos pueden comunicarse entre sí a través del enrutamiento configurado.
 
 ![Ping entre VLANs](capturas/09_ping_vlan.png)
+
+---
+
+### 4.15 Configuración de ACLs
+
+Se han implementado listas de control de acceso (ACLs) en el router con el objetivo de restringir la comunicación entre determinadas VLANs, mejorando la seguridad de la red.
+
+Las ACLs se han aplicado sobre las subinterfaces del router en dirección de entrada (in), controlando el tráfico desde el origen.
+
+---
+
+### 4.16 Reglas de filtrado implementadas
+
+Se han configurado las siguientes restricciones:
+
+- VLAN 50 (AULA) - acceso a VLAN 20 (DIRECCIÓN)  
+- VLAN 30 (DESARROLLO) - acceso a VLAN 10 (ADMINISTRACIÓN)  
+
+El resto del tráfico entre VLANs está permitido.
+
+---
+
+### 4.17 Verificación de las ACLs
+
+Se ha verificado el correcto funcionamiento de las ACLs mediante pruebas de conectividad.
+
+Se ha comprobado que:
+
+- El tráfico restringido es bloqueado correctamente  
+- El tráfico permitido sigue funcionando con normalidad  
+
+![Configuración de ACLs](capturas/10_acl_config.png)
+
+![Ping bloqueado](capturas/11_ping_bloqueado.png)
+
+![Ping permitido](capturas/12_ping_permitido.png)
