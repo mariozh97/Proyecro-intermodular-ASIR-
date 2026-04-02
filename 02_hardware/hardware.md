@@ -24,7 +24,6 @@ La infraestructura debe ser:
 - Escalable  
 - Segura  
 - Preparada para trabajo continuo  
-- Coherente con la segmentación en VLANs definida en la red  
 
 ---
 
