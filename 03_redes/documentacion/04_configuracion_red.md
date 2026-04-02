@@ -153,3 +153,33 @@ show ip interface brief
 Se ha comprobado que todas las subinterfaces del router se encuentran en estado "up/up", lo que indica que el enrutamiento inter-VLAN está correctamente configurado.
 
 Esto permite la comunicación entre las distintas redes de la infraestructura.
+
+---
+
+### 4.12 Configuración de DHCP
+
+Se ha configurado el servicio DHCP en el router con el objetivo de asignar direcciones IP automáticamente a los dispositivos de la red.
+
+Se han creado diferentes pools DHCP, uno para cada VLAN, definiendo la red correspondiente y la puerta de enlace predeterminada.
+
+Además, se han excluido las direcciones 192.168.X.1 a 192.168.X.9 en cada VLAN para reservarlas para dispositivos fijos como gateways, servidores o impresoras.
+
+---
+
+### 4.13 Verificación del direccionamiento
+
+Se ha comprobado que los equipos de la red reciben correctamente una dirección IP mediante DHCP.
+
+Cada dispositivo obtiene una IP dentro de su rango correspondiente, junto con la máscara de subred y la puerta de enlace.
+
+![Configuración DHCP en PC](capturas/08_dhcp_pc.png)
+
+---
+
+### 4.14 Prueba de conectividad
+
+Se ha verificado la comunicación entre diferentes VLANs mediante el uso del comando ping.
+
+Los resultados confirman que los dispositivos pueden comunicarse entre sí a través del enrutamiento configurado.
+
+![Ping entre VLANs](capturas/09_ping_vlan.png)
