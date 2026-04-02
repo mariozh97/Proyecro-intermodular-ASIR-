@@ -30,10 +30,15 @@ Esta distribución influye directamente en el diseño de la red, ya que será ne
 Para montar la infraestructura de red se necesitan los siguientes dispositivos:
 
 - Ordenadores (PCs) para los empleados de cada departamento  
-- Servidores para alojar servicios internos  
-- Switches para conectar los equipos dentro de la red  
-- Un router para proporcionar acceso a Internet  
+- 3 servidores:
+  - Servidor web  
+  - Servidor DNS/DHCP  
+  - Servidor de copias de seguridad  
+- Switches de acceso para cada planta  
+- Un switch principal para la interconexión de la red  
+- Un router para proporcionar acceso a Internet y realizar el enrutamiento entre VLANs (router-on-a-stick)  
 - Un punto de acceso WiFi para conexiones inalámbricas  
+- 1 impresora de red compartida entre Administración y Dirección  
 
 ---
 
@@ -46,7 +51,7 @@ La red debe permitir:
 - Acceso a los servidores internos  
 - Acceso a Internet  
 - Separación de la red mediante VLANs para mejorar la organización  
-- Asignación automática de direcciones IP mediante DHCP  
+- Asignación automática de direcciones IP mediante DHCP (gestionado por un servidor dedicado)  
 - Control de acceso entre redes mediante ACLs  
 - Uso de red WiFi tanto para empleados como para invitados  
 
@@ -69,7 +74,9 @@ Estas restricciones se aplicarán mediante listas de control de acceso (ACLs).
 
 Para organizar la red se utilizarán VLANs, ya que permiten separar los distintos departamentos y mejorar la seguridad.
 
-El uso de DHCP facilita la asignación de direcciones IP sin necesidad de configurarlas manualmente en cada equipo.
+El enrutamiento entre VLANs se realizará mediante la técnica **router-on-a-stick**, utilizando el router conectado al switch principal mediante un enlace troncal 802.1Q.
+
+El uso de un servidor dedicado para DHCP permite centralizar la gestión de direcciones IP y facilita la administración de la red.
 
 Las ACLs permiten controlar qué redes pueden comunicarse entre sí, lo cual es importante para cumplir las políticas de seguridad.
 
@@ -81,12 +88,13 @@ Se utilizará una topología jerárquica con switches y router, ya que es una fo
 
 A continuación se detalla el número de dispositivos conectados en la red:
 
-| Departamento       | PCs | Otros dispositivos       | Total |
-|--------------------|-----|--------------------------|-------|
-| Administración     | 2   | 1 impresora              | 3     |
-| Dirección          | 2   | -                        | 2     |
-| Desarrollo         | 8   | -                        | 8     |
-| Soporte técnico    | 4   | -                        | 4     |
-| Aula de formación  | 4   | 1 proyector              | 5     |
-| Servidores (CPD)   | -   | 3 servidores             | 3     |
-| **TOTAL**          | **20 PCs** | **5 dispositivos** | **25 equipos** |
+| Departamento       | PCs | Otros dispositivos                  | Total |
+|--------------------|-----|------------------------------------|-------|
+| Administración     | 2   | 1 impresora                        | 3     |
+| Dirección          | 2   | -                                  | 2     |
+| Desarrollo         | 8   | -                                  | 8     |
+| Soporte técnico    | 4   | -                                  | 4     |
+| Aula de formación  | 4   | 1 proyector                        | 5     |
+| Servidores (CPD)   | -   | 3 servidores                       | 3     |
+| Red inalámbrica    | -   | 1 punto de acceso                  | 1     |
+| **TOTAL**          | **20 PCs** | **6 dispositivos adicionales** | **26 equipos** |
