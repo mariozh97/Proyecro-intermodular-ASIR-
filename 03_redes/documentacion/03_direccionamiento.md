@@ -26,6 +26,8 @@ A continuación se muestra la asignación de redes, direcciones IP y puertos:
 
 Los puertos corresponden a los switches de acceso de cada planta, mientras que los servidores se conectan directamente al switch principal en la sala CPD.
 
+Los dispositivos inalámbricos (laptop WiFi) se conectan a la VLAN 10 a través del punto de acceso, obteniendo dirección IP automáticamente dentro del rango DHCP de dicha red.
+
 ---
 
 ## 3.3 Direcciones IP estáticas (servidores)
@@ -49,6 +51,8 @@ El uso de direcciones privadas del tipo 192.168.X.0/24 permite una estructura se
 Los gateways se han definido como la primera dirección disponible (.1) en cada red.
 
 El enrutamiento entre redes se realiza con router-on-a-stick, utilizando subinterfaces en el router asociadas a cada VLAN.
+
+El uso de DHCP permite asignar direcciones IP automáticamente tanto a equipos cableados como inalámbricos.
 
 ---
 
