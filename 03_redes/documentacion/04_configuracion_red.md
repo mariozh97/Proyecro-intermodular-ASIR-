@@ -193,7 +193,7 @@ El punto de acceso está conectado al switch de la primera planta en el puerto F
 - Seguridad: WPA2-PSK  
 - Contraseña: Empresa123  
 
-![Configuración WiFi](capturas/02_wifi_configuracion.png)
+![Configuración WiFi](capturas/14_wifi_configuracion.png)
 
 ---
 
@@ -201,21 +201,28 @@ El punto de acceso está conectado al switch de la primera planta en el puerto F
 
 Los dispositivos inalámbricos obtienen dirección IP automáticamente mediante DHCP dentro de la red 192.168.10.0/24.
 
-![IP automática WiFi](capturas/03_wifi_dhcp.png)
+![IP automática WiFi](capturas/15_wifi_dhcp.png)
 
 ---
 
 ### 4.21 Prueba de funcionamiento
 
-Se ha verificado la conexión mediante pruebas de red.
+Se ha verificado la conexión mediante pruebas de red, comprobando la comunicación con el gateway y con servidores de la red.
 
-![Ping WiFi](capturas/04_wifi_ping_ok.png)
+![Ping WiFi](capturas/16_wifi_ping_ok.png)
 
 ---
 
-### 4.22 Limitaciones
+### 4.22 Topología de conexión inalámbrica
 
-Debido a las limitaciones del dispositivo AccessPoint-PT en Cisco Packet Tracer, no es posible configurar múltiples redes WiFi.
+A continuación se muestra la conexión entre el punto de acceso y el dispositivo inalámbrico:
+
+![Topología WiFi](capturas/13_wifi_configuracion.png)
+
+---
+
+### 4.23 Limitaciones
+
+Debido a las limitaciones del dispositivo AccessPoint-PT en Cisco Packet Tracer, no es posible configurar múltiples redes WiFi (empleados e invitados).
 
 En un entorno real, se utilizarían puntos de acceso avanzados con múltiples SSID y segmentación por VLAN.
-
