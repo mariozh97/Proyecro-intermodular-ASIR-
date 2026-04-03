@@ -30,7 +30,7 @@ show vlan brief
 
 ### 4.2 Configuración de enlaces troncales (Trunk)
 
-Se han configurado enlaces troncales entre el switch principal y los switches de acceso.
+Se han configurado enlaces troncales entre el switch principal y los switches de acceso, así como entre el router y el switch principal.
 
 Estos enlaces permiten el transporte de múltiples VLANs a través de un único enlace físico mediante el protocolo IEEE 802.1Q.
 
@@ -38,6 +38,7 @@ Los puertos configurados en modo trunk son:
 
 - Switch Principal → Switch Acceso PB  
 - Switch Principal → Switch Acceso P1  
+- Router → Switch Principal  
 
 En todos los casos se ha utilizado el modo trunk para permitir la comunicación entre VLANs a través de la red.
 
@@ -60,7 +61,7 @@ Se ha comprobado el correcto funcionamiento de la configuración mediante los si
 - Estado activo de los puertos trunk  
 - Correspondencia entre VLANs creadas y diseño de red  
 
-Los resultados obtenidos confirman que la segmentación de red se ha implementado correctamente y que la infraestructura está preparada para continuar con la asignación de puertos y configuración de servicios de red.
+Los resultados obtenidos confirman que la segmentación de red se ha implementado correctamente.
 
 ---
 
@@ -84,7 +85,8 @@ La asignación realizada es la siguiente:
 - VLAN 30 (DEV): Fa0/1-2 en SW-Acceso-P1  
 - VLAN 40 (SOPORTE): Fa0/11-12 en SW-Acceso-P1  
 - VLAN 50 (FORMACION): Fa0/16-17 en SW-Acceso-P1  
-- VLAN 50 (Access Point): Fa0/10 en SW-Acceso-P1 (compartiendo VLAN con el aula de formación)  
+
+- Punto de acceso: Fa0/10 en SW-Acceso-P1 (configurado en VLAN 30 - red de empleados)  
 
 - VLAN 60 (SRV): Fa0/21-23 en SW-Principal  
 
@@ -116,7 +118,7 @@ Para permitir la comunicación entre las diferentes VLANs, se ha implementado en
 
 Esta decisión se ha tomado debido a que el switch principal (Cisco 2960) no dispone de capacidades de capa 3, por lo que no puede realizar enrutamiento entre VLANs.
 
-Por este motivo, el enrutamiento se realiza en el router mediante subinterfaces, una por cada VLAN.
+El enrutamiento se realiza en el router mediante subinterfaces, una por cada VLAN, configuradas sobre una única interfaz física conectada al switch principal.
 
 Cada subinterfaz está asociada a su correspondiente VLAN mediante el protocolo IEEE 802.1Q.
 
@@ -158,11 +160,11 @@ Esto permite la comunicación entre las distintas redes de la infraestructura.
 
 ### 4.12 Configuración de DHCP
 
-Se ha configurado el servicio DHCP en el router con el objetivo de asignar direcciones IP automáticamente a los dispositivos de la red.
+El servicio DHCP se ha configurado en un servidor dedicado ubicado en la VLAN 60.
 
-Se han creado diferentes pools DHCP, uno para cada VLAN, definiendo la red correspondiente y la puerta de enlace predeterminada.
+Este servidor se encarga de asignar direcciones IP automáticamente a los dispositivos de la red.
 
-Además, se han excluido las direcciones 192.168.X.1 a 192.168.X.9 en cada VLAN para reservarlas para dispositivos fijos como gateways, servidores o impresoras.
+Se han definido distintos rangos de direcciones para cada VLAN, evitando conflictos con direcciones estáticas.
 
 ---
 
@@ -198,8 +200,8 @@ Las ACLs se han aplicado sobre las subinterfaces del router en dirección de ent
 
 Se han configurado las siguientes restricciones:
 
-- VLAN 50 (AULA) - acceso a VLAN 20 (DIRECCIÓN)  
-- VLAN 30 (DESARROLLO) - acceso a VLAN 10 (ADMINISTRACIÓN)  
+- VLAN 50 (AULA) no puede acceder a VLAN 20 (DIRECCIÓN)  
+- VLAN 30 (DESARROLLO) no puede acceder a VLAN 10 (ADMINISTRACIÓN)  
 
 El resto del tráfico entre VLANs está permitido.
 
