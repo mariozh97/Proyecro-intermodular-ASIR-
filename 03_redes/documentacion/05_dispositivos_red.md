@@ -42,11 +42,15 @@ Sus funciones son:
 
 ## 5.4 Punto de acceso (Access Point)
 
-Se ha utilizado un punto de acceso para proporcionar conectividad inalámbrica.
+Se ha utilizado un punto de acceso para proporcionar conexión inalámbrica a los empleados.
 
-Está conectado al switch de la primera planta y permite el acceso a la red desde dispositivos inalámbricos.
+Está conectado al switch de la primera planta mediante un puerto configurado en modo access en la VLAN 10.
 
-El punto de acceso está configurado en la VLAN 30 (red de empleados), permitiendo la conexión de dispositivos internos de la empresa.
+Permite la conexión de dispositivos inalámbricos a la red interna de la empresa.
+
+Los dispositivos conectados obtienen dirección IP automáticamente mediante DHCP.
+
+Debido a las limitaciones del dispositivo AccessPoint-PT en Cisco Packet Tracer, se ha configurado una única red inalámbrica para empleados.
 
 ---
 
@@ -79,3 +83,13 @@ Cada grupo de equipos se encuentra en su VLAN correspondiente, lo que garantiza:
 - Aislamiento del tráfico
 - Mejora de la seguridad
 - Organización de la red
+
+---
+
+## 5.7 Dispositivos inalámbricos
+
+Se ha incorporado un dispositivo portátil conectado mediante WiFi al punto de acceso.
+
+Este dispositivo obtiene dirección IP automáticamente mediante DHCP dentro de la VLAN 10.
+
+Permite comprobar el correcto funcionamiento de la red inalámbrica y su integración con el resto de la red.
