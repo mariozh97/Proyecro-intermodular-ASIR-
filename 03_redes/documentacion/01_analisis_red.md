@@ -11,15 +11,15 @@ Para que la empresa funcione correctamente, es necesario diseñar una red que pe
 La empresa se distribuye en dos plantas:
 
 ### Planta baja
-- Recepción
-- Administración
-- Dirección
-- Sala de servidores (CPD)
+- Recepción  
+- Administración  
+- Dirección  
+- Sala de servidores (CPD)  
 
 ### Primera planta
-- Desarrollo
-- Soporte técnico
-- Aula de formación
+- Desarrollo  
+- Soporte técnico  
+- Aula de formación  
 
 Esta distribución influye directamente en el diseño de la red, ya que será necesario utilizar varios switches para organizar las conexiones.
 
@@ -37,7 +37,7 @@ Para montar la infraestructura de red se necesitan los siguientes dispositivos:
 - Switches de acceso para cada planta  
 - Un switch principal para la interconexión de la red  
 - Un router para proporcionar acceso a Internet y realizar el enrutamiento entre VLANs (router-on-a-stick)  
-- Un punto de acceso WiFi para conexiones inalámbricas  
+- Un punto de acceso WiFi para proporcionar conexión inalámbrica a los empleados  
 - 1 impresora de red compartida entre Administración y Dirección  
 
 ---
@@ -53,7 +53,9 @@ La red debe permitir:
 - Separación de la red mediante VLANs para mejorar la organización  
 - Asignación automática de direcciones IP mediante DHCP (gestionado por un servidor dedicado)  
 - Control de acceso entre redes mediante ACLs  
-- Uso de red WiFi tanto para empleados como para invitados  
+- Uso de red WiFi para empleados  
+
+Debido a las limitaciones del dispositivo AccessPoint-PT en Cisco Packet Tracer, no es posible implementar múltiples redes inalámbricas (empleados e invitados), por lo que se ha configurado únicamente la red WiFi para empleados.
 
 ---
 
@@ -82,19 +84,21 @@ Las ACLs permiten controlar qué redes pueden comunicarse entre sí, lo cual es 
 
 Se utilizará una topología jerárquica con switches y router, ya que es una forma habitual de organizar redes en empresas y permite que la red sea escalable.
 
+El uso de conexión inalámbrica permite mayor flexibilidad para los usuarios, facilitando el acceso a la red sin necesidad de conexión cableada.
+
 ---
 
 ## 1.6 Resumen cuantitativo de equipos
 
 A continuación se detalla el número de dispositivos conectados en la red:
 
-| Departamento       | PCs | Otros dispositivos                  | Total |
-|--------------------|-----|------------------------------------|-------|
-| Administración     | 2   | 1 impresora                        | 3     |
-| Dirección          | 2   | -                                  | 2     |
-| Desarrollo         | 8   | -                                  | 8     |
-| Soporte técnico    | 4   | -                                  | 4     |
-| Aula de formación  | 4   | 1 proyector                        | 5     |
-| Servidores (CPD)   | -   | 3 servidores                       | 3     |
-| Red inalámbrica    | -   | 1 punto de acceso                  | 1     |
-| **TOTAL**          | **20 PCs** | **6 dispositivos adicionales** | **26 equipos** |
+| Departamento       | PCs | Otros dispositivos                              | Total |
+|--------------------|-----|-------------------------------------------------|-------|
+| Administración     | 2   | 1 impresora                                     | 3     |
+| Dirección          | 2   | -                                               | 2     |
+| Desarrollo         | 8   | -                                               | 8     |
+| Soporte técnico    | 4   | -                                               | 4     |
+| Aula de formación  | 4   | 1 proyector                                     | 5     |
+| Servidores (CPD)   | -   | 3 servidores                                    | 3     |
+| Red inalámbrica    | -   | 1 punto de acceso (empleados)                   | 1     |
+| **TOTAL**          | **20 PCs** | **6 dispositivos adicionales**       | **26 equipos** |
