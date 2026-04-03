@@ -6,10 +6,10 @@ Se ha utilizado un router Cisco 2911 como dispositivo de capa 3 encargado del en
 
 El router realiza las siguientes funciones:
 
-- Enrutamiento inter-VLAN mediante Router-on-a-stick
-- Asignación de direcciones IP mediante DHCP
+- Enrutamiento inter-VLAN mediante Router-on-a-stick, utilizando subinterfaces asociadas a cada VLAN
 - Aplicación de políticas de seguridad mediante ACLs
 - Puerta de enlace predeterminada de todas las VLANs
+- Traducción de direcciones mediante NAT para permitir la salida a Internet
 
 ---
 
@@ -19,10 +19,10 @@ Se ha utilizado un switch Cisco 2960 como switch principal de la red.
 
 Sus funciones son:
 
-- Conectar los switches de acceso mediante enlaces troncales
+- Conectar los switches de acceso mediante enlaces troncales (802.1Q)
 - Centralizar la red en el CPD
 - Conectar los servidores
-- Distribuir el tráfico entre las distintas VLANs
+- Transportar tráfico de múltiples VLANs
 
 Este switch opera en capa 2, por lo que no realiza funciones de enrutamiento.
 
@@ -36,7 +36,7 @@ Sus funciones son:
 
 - Conectar los equipos finales (PCs)
 - Asignar los puertos a las VLANs correspondientes
-- Segmentar la red por departamentos
+- Segmentar la red por departamentos mediante VLANs
 
 ---
 
@@ -46,21 +46,21 @@ Se ha utilizado un punto de acceso para proporcionar conectividad inalámbrica.
 
 Está conectado al switch de la primera planta y permite el acceso a la red desde dispositivos inalámbricos.
 
-Comparte la VLAN de formación (VLAN 50).
+El punto de acceso está configurado en la VLAN 30 (red de empleados), permitiendo la conexión de dispositivos internos de la empresa.
 
 ---
 
 ## 5.5 Servidores
 
-Se han desplegado tres servidores conectados al switch principal.
+Se han desplegado tres servidores conectados al switch principal en la VLAN 60.
 
-Sus funciones pueden incluir:
+Sus funciones son:
 
-- Servicios web
-- Almacenamiento de datos
-- Servicios internos de la empresa
+- Servidor Web → proporciona servicios web internos
+- Servidor DNS/DHCP → gestiona la resolución de nombres y la asignación automática de direcciones IP
+- Servidor de Backup → encargado de copias de seguridad de los datos
 
-Se encuentran en la VLAN 60 para aislarlos del resto de la red.
+La ubicación en la VLAN 60 permite aislar los servicios críticos del resto de la red.
 
 ---
 
@@ -74,4 +74,8 @@ Se han desplegado equipos cliente (PCs) distribuidos por departamentos:
 - Soporte técnico
 - Aula de formación
 
-Cada grupo de equipos se encuentra en su VLAN correspondiente para garantizar la segmentación y seguridad de la red.
+Cada grupo de equipos se encuentra en su VLAN correspondiente, lo que garantiza:
+
+- Aislamiento del tráfico
+- Mejora de la seguridad
+- Organización de la red
