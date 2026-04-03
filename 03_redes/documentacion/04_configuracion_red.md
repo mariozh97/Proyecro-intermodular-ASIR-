@@ -18,7 +18,9 @@ Las VLANs configuradas son:
 
 Para su creación se ha accedido al modo de configuración de cada switch mediante CLI, creando cada VLAN y asignándole un nombre descriptivo.
 
-La verificación se ha realizado utilizando el comando:
+La verificación se ha realizado utilizando el comando: 
+
+show vlan brief
 
 
 #### Evidencia de configuración
@@ -39,7 +41,9 @@ Los puertos configurados en modo trunk son:
 - Switch Principal → Switch Acceso P1  
 - Router → Switch Principal  
 
-La verificación se ha realizado mediante el comando:
+La verificación se ha realizado mediante el comando: 
+
+show interfaces trunk
 
 
 #### Evidencia de configuración
@@ -98,7 +102,7 @@ La asignación realizada es la siguiente:
 
 ### 4.7 Verificación
 
-Se ha comprobado que los puertos de los switches se encuentran correctamente asignados a sus respectivas VLANs mediante el comando:
+Se ha comprobado que los puertos de los switches se encuentran correctamente asignados a sus respectivas VLANs mediante el comando: show vlan brief
 
 
 ---
@@ -127,10 +131,14 @@ Se han configurado las siguientes direcciones IP en el router:
 
 ### 4.10 Evidencia de configuración
 
+Se ha verificado la configuración mediante el comando:
+
+show ip interface brief
 
 ![Subinterfaces del router](capturas/07_router_subinterfaces.png)
 
 ---
+
 
 ### 4.11 Verificación
 
