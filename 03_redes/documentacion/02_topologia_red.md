@@ -6,7 +6,7 @@ Se ha elegido una topología jerárquica, ya que es la más utilizada en entorno
 Esta topología se divide en:
 
 - Capa de acceso (switches por planta)  
-- Capa de distribución (switch principal capa 2)
+- Capa de distribución (switch principal capa 2)  
 - Capa de salida (router)  
 
 ---
@@ -22,6 +22,7 @@ La red se organiza en dos plantas:
 **Primera planta**
 - Switch de acceso P1  
 - Equipos de Desarrollo, Soporte técnico y Aula de formación  
+- Punto de acceso WiFi para empleados  
 
 ---
 
@@ -34,6 +35,7 @@ La red estará formada por:
 - 1 Punto de acceso WiFi  
 - 3 Servidores  
 - 20 PCs (representados de forma agrupada en el diagrama)  
+- 1 Laptop conectada por WiFi  
 
 ---
 
@@ -44,7 +46,7 @@ Los switches de acceso se conectan al switch principal mediante enlaces troncale
 
 El switch principal se conecta al router.
 
-El punto de acceso se conecta a un switch de acceso.
+El punto de acceso se conecta al switch de acceso de la primera planta mediante un enlace de tipo access en la VLAN 10.
 
 Los servidores se conectan al switch principal.
 
@@ -96,6 +98,8 @@ El uso de VLANs mejora la seguridad y reduce el tráfico innecesario dentro de l
 
 La separación en capas facilita la administración, mantenimiento y resolución de problemas.
 
+La incorporación de conexión inalámbrica permite mayor flexibilidad para los usuarios dentro de la red.
+
 ---
 
 ### 2.9 Diagramas de la topología
@@ -137,7 +141,7 @@ Las conexiones principales son:
 - PCs Aula → Fa0/16, Fa0/17  
 
 **Punto de acceso:**
-- Access Point → Fa0/10  
+- Access Point → Fa0/3  
 
 ---
 
@@ -150,7 +154,7 @@ Las conexiones principales son:
 | SW-Acceso-P1 | Fa0/1, Fa0/2 | 30 (DEV) | PCs Desarrollo |
 | SW-Acceso-P1 | Fa0/11, Fa0/12 | 40 (SOPORTE) | PCs Soporte |
 | SW-Acceso-P1 | Fa0/16, Fa0/17 | 50 (FORMACION) | PCs Aula |
-|  SW-Acceso-P1 | Fa0/10 | VLAN 30 (EMPRESA) | Access Point |
+| SW-Acceso-P1 | Fa0/3 | 10 (ADMIN) | Access Point |
 | SW-Principal | Fa0/21-23 | 60 (SRV) | Servidores |
 
 ---
