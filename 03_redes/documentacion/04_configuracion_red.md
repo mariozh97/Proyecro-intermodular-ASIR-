@@ -20,7 +20,6 @@ Para su creación se ha accedido al modo de configuración de cada switch median
 
 La verificación se ha realizado utilizando el comando:
 
-show vlan brief
 
 #### Evidencia de configuración
 
@@ -40,11 +39,8 @@ Los puertos configurados en modo trunk son:
 - Switch Principal → Switch Acceso P1  
 - Router → Switch Principal  
 
-En todos los casos se ha utilizado el modo trunk para permitir la comunicación entre VLANs a través de la red.
-
 La verificación se ha realizado mediante el comando:
 
-show interfaces trunk
 
 #### Evidencia de configuración
 
@@ -86,15 +82,13 @@ La asignación realizada es la siguiente:
 - VLAN 40 (SOPORTE): Fa0/11-12 en SW-Acceso-P1  
 - VLAN 50 (FORMACION): Fa0/16-17 en SW-Acceso-P1  
 
-- Punto de acceso: Fa0/10 en SW-Acceso-P1 (configurado en VLAN 30 - red de empleados)  
+- Punto de acceso: Fa0/3 en SW-Acceso-P1 (configurado en VLAN 10)  
 
 - VLAN 60 (SRV): Fa0/21-23 en SW-Principal  
 
 ---
 
 ### 4.6 Evidencias de configuración
-
-A continuación se muestran las capturas que verifican la correcta asignación de puertos a VLANs:
 
 ![Asignación VLAN - Planta Baja](capturas/06_asignacion_vlan_pb.png)
 
@@ -106,9 +100,6 @@ A continuación se muestran las capturas que verifican la correcta asignación d
 
 Se ha comprobado que los puertos de los switches se encuentran correctamente asignados a sus respectivas VLANs mediante el comando:
 
-show vlan brief
-
-Los resultados confirman que cada departamento está correctamente segmentado dentro de la red.
 
 ---
 
@@ -116,11 +107,7 @@ Los resultados confirman que cada departamento está correctamente segmentado de
 
 Para permitir la comunicación entre las diferentes VLANs, se ha implementado enrutamiento inter-VLAN mediante la técnica Router-on-a-stick.
 
-Esta decisión se ha tomado debido a que el switch principal (Cisco 2960) no dispone de capacidades de capa 3, por lo que no puede realizar enrutamiento entre VLANs.
-
-El enrutamiento se realiza en el router mediante subinterfaces, una por cada VLAN, configuradas sobre una única interfaz física conectada al switch principal.
-
-Cada subinterfaz está asociada a su correspondiente VLAN mediante el protocolo IEEE 802.1Q.
+Esta decisión se ha tomado debido a que el switch principal (Cisco 2960) no dispone de capacidades de capa 3.
 
 ---
 
@@ -136,15 +123,10 @@ Se han configurado las siguientes direcciones IP en el router:
 - VLAN 60 → 192.168.60.1  
 - VLAN 99 → 192.168.99.1  
 
-Estas direcciones actúan como puerta de enlace predeterminada para los dispositivos de cada VLAN.
-
 ---
 
 ### 4.10 Evidencia de configuración
 
-A continuación se muestra la verificación de las subinterfaces configuradas en el router mediante el comando:
-
-show ip interface brief
 
 ![Subinterfaces del router](capturas/07_router_subinterfaces.png)
 
@@ -152,9 +134,7 @@ show ip interface brief
 
 ### 4.11 Verificación
 
-Se ha comprobado que todas las subinterfaces del router se encuentran en estado "up/up", lo que indica que el enrutamiento inter-VLAN está correctamente configurado.
-
-Esto permite la comunicación entre las distintas redes de la infraestructura.
+Se ha comprobado que todas las subinterfaces del router se encuentran en estado "up/up".
 
 ---
 
@@ -162,17 +142,9 @@ Esto permite la comunicación entre las distintas redes de la infraestructura.
 
 El servicio DHCP se ha configurado en un servidor dedicado ubicado en la VLAN 60.
 
-Este servidor se encarga de asignar direcciones IP automáticamente a los dispositivos de la red.
-
-Se han definido distintos rangos de direcciones para cada VLAN, evitando conflictos con direcciones estáticas.
-
 ---
 
 ### 4.13 Verificación del direccionamiento
-
-Se ha comprobado que los equipos de la red reciben correctamente una dirección IP mediante DHCP.
-
-Cada dispositivo obtiene una IP dentro de su rango correspondiente, junto con la máscara de subred y la puerta de enlace.
 
 ![Configuración DHCP en PC](capturas/08_dhcp_pc.png)
 
@@ -180,44 +152,70 @@ Cada dispositivo obtiene una IP dentro de su rango correspondiente, junto con la
 
 ### 4.14 Prueba de conectividad
 
-Se ha verificado la comunicación entre diferentes VLANs mediante el uso del comando ping.
-
-Los resultados confirman que los dispositivos pueden comunicarse entre sí a través del enrutamiento configurado.
-
 ![Ping entre VLANs](capturas/09_ping_vlan.png)
 
 ---
 
 ### 4.15 Configuración de ACLs
 
-Se han implementado listas de control de acceso (ACLs) en el router con el objetivo de restringir la comunicación entre determinadas VLANs, mejorando la seguridad de la red.
-
-Las ACLs se han aplicado sobre las subinterfaces del router en dirección de entrada (in), controlando el tráfico desde el origen.
+Se han implementado listas de control de acceso (ACLs) en el router con el objetivo de restringir la comunicación entre determinadas VLANs.
 
 ---
 
 ### 4.16 Reglas de filtrado implementadas
 
-Se han configurado las siguientes restricciones:
-
-- VLAN 50 (AULA) no puede acceder a VLAN 20 (DIRECCIÓN)  
-- VLAN 30 (DESARROLLO) no puede acceder a VLAN 10 (ADMINISTRACIÓN)  
-
-El resto del tráfico entre VLANs está permitido.
+- VLAN 50 no puede acceder a VLAN 20  
+- VLAN 30 no puede acceder a VLAN 10  
 
 ---
 
 ### 4.17 Verificación de las ACLs
-
-Se ha verificado el correcto funcionamiento de las ACLs mediante pruebas de conectividad.
-
-Se ha comprobado que:
-
-- El tráfico restringido es bloqueado correctamente  
-- El tráfico permitido sigue funcionando con normalidad  
 
 ![Configuración de ACLs](capturas/10_acl_config.png)
 
 ![Ping bloqueado](capturas/11_ping_bloqueado.png)
 
 ![Ping permitido](capturas/12_ping_permitido.png)
+
+---
+
+## 4.18 Configuración de la red inalámbrica
+
+Se ha implementado un punto de acceso WiFi para proporcionar conexión inalámbrica a los empleados.
+
+El punto de acceso está conectado al switch de la primera planta en el puerto Fa0/3, configurado en modo access en la VLAN 10.
+
+---
+
+### 4.19 Configuración del punto de acceso
+
+- SSID: SSID_EMPRESA  
+- Seguridad: WPA2-PSK  
+- Contraseña: Empresa123  
+
+![Configuración WiFi](capturas/02_wifi_configuracion.png)
+
+---
+
+### 4.20 Asignación de direcciones IP (WiFi)
+
+Los dispositivos inalámbricos obtienen dirección IP automáticamente mediante DHCP dentro de la red 192.168.10.0/24.
+
+![IP automática WiFi](capturas/03_wifi_dhcp.png)
+
+---
+
+### 4.21 Prueba de funcionamiento
+
+Se ha verificado la conexión mediante pruebas de red.
+
+![Ping WiFi](capturas/04_wifi_ping_ok.png)
+
+---
+
+### 4.22 Limitaciones
+
+Debido a las limitaciones del dispositivo AccessPoint-PT en Cisco Packet Tracer, no es posible configurar múltiples redes WiFi.
+
+En un entorno real, se utilizarían puntos de acceso avanzados con múltiples SSID y segmentación por VLAN.
+
