@@ -77,7 +77,7 @@ Resultado: servicio activo (running)
 También se ha verificado el acceso desde un cliente utilizando las credenciales del usuario configurado.
 
 <p align="center">
-  <img src="../capturas/srv1/samba_acceso.png" width="650">
+<img src="../capturas/srv1/acceso_windows.png" width="650">
 </p>
 
 ---
