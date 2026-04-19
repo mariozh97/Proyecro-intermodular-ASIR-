@@ -55,7 +55,11 @@ Una vez finalizada la instalación y reiniciado el sistema, se ha comprobado el 
 
 ### Verificación inicial del sistema
 
-Se ha verificado el correcto funcionamiento básico del sistema mediante acceso a la terminal.
+Se ha comprobado el correcto funcionamiento básico del sistema mediante comandos de verificación:
 
 ```bash
-usuario@srv1:~$
+usuario@srv1:~$ whoami
+usuario
+
+usuario@srv1:~$ hostname
+srv1
