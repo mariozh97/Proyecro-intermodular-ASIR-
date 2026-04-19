@@ -28,37 +28,40 @@ Servicio activo en ejecución (**active (running)**)
 
 ## 4. Verificación del servicio
 
-Se ha comprobado el acceso al servidor web desde un equipo cliente mediante navegador:
+Se ha comprobado el funcionamiento del servidor web desde el propio sistema:
 
-`http://192.168.1.139`
+`curl http://localhost`
 
-Página por defecto de Apache:
+Resultado:  
+El servidor devuelve correctamente el contenido HTML configurado.
 
 <p align="center">
-  <img src="../capturas/srv2/srv2_apache_ok.png" width="650">
+  <img src="../capturas/srv2/srv2_apache_local.png" width="650">
 </p>
 
 ---
 
-## 5. Personalización del sitio web
+## 5. Verificación desde cliente
+
+Se ha comprobado el acceso al servidor web desde un equipo cliente mediante navegador:
+
+`http://192.168.1.139`
+
+<p align="center">
+  <img src="../capturas/srv2/srv2_apache_custom.png" width="650">
+</p>
+
+---
+
+## 6. Personalización del sitio web
 
 Se ha modificado el archivo principal del servidor web para mostrar contenido personalizado:
 
 `echo "<h1>Servidor web srv2 funcionando</h1><p>Proyecto ASIR</p>" | sudo tee /var/www/html/index.html`
 
-Posteriormente, se ha reiniciado el servicio para aplicar los cambios:
+Posteriormente, se ha reiniciado el servicio:
 
 `sudo systemctl restart apache2`
-
----
-
-## 6. Resultado
-
-Tras la modificación, se ha comprobado que el servidor muestra el contenido personalizado:
-
-<p align="center">
-  <img src="../capturas/srv2/srv2_apache_custom.png" width="650">
-</p>
 
 ---
 
@@ -67,7 +70,8 @@ Tras la modificación, se ha comprobado que el servidor muestra el contenido per
 Tras la configuración realizada:
 
 - Servicio Apache instalado y operativo  
+- Funcionamiento verificado en local (**curl**)  
 - Acceso web funcional desde la red  
-- Página web personalizada configurada correctamente  
+- Contenido web personalizado desplegado correctamente  
 
 El servidor queda preparado para ofrecer servicios web dentro de la infraestructura del proyecto.
