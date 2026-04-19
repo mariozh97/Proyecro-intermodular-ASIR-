@@ -19,19 +19,27 @@ La instalación se ha realizado utilizando las opciones recomendadas por el inst
 
 #### Inicio de la instalación
 
-![Inicio instalación](../capturas/srv1/instalacion_inicio.png)
+<p align="center">
+  <img src="../capturas/srv1/instalacion_inicio.png" width="750">
+</p>
 
 #### Selección del tipo de instalación
 
-![Tipo instalación](../capturas/srv1/instalacion_tipo.png)
+<p align="center">
+  <img src="../capturas/srv1/instalacion_tipo.png" width="750">
+</p>
 
 #### Configuración del disco
 
-![Configuración disco](../capturas/srv1/disco_configuracion.png)
+<p align="center">
+  <img src="../capturas/srv1/disco_configuracion.png" width="750">
+</p>
 
 #### Resumen de particionado
 
-![Resumen disco](../capturas/srv1/disco_resumen.png)
+<p align="center">
+  <img src="../capturas/srv1/disco_resumen.png" width="750">
+</p>
 
 ---
 
@@ -39,7 +47,9 @@ La instalación se ha realizado utilizando las opciones recomendadas por el inst
 
 Una vez finalizada la instalación y reiniciado el sistema, se ha comprobado el acceso mediante login en consola con el usuario creado.
 
-![Login sistema](../capturas/srv1/terminal_login.png)
+<p align="center">
+  <img src="../capturas/srv1/terminal_login.png" width="650">
+</p>
 
 ---
 
