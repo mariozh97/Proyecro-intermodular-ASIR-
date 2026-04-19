@@ -13,15 +13,35 @@ Para instalar el servicio Samba se han utilizado los siguientes comandos:
 `sudo apt update`  
 `sudo apt install samba`
 
-Una vez instalado, se ha comprobado que el servicio está activo:
+Se ha comprobado la instalación del servicio:
 
-`systemctl status smbd`  
+`smbd --version`
 
-Resultado: servicio activo (running)
+Resultado:  
+Samba instalado correctamente
+
+<p align="center">
+  <img src="../capturas/srv1/samba_instalado.png" width="650">
+</p>
 
 ---
 
-## 3. Creación del directorio compartido
+## 3. Estado del servicio
+
+Se ha verificado que el servicio Samba se encuentra activo:
+
+`systemctl status smbd`
+
+Resultado:  
+Servicio activo en ejecución (**active (running)**)
+
+<p align="center">
+  <img src="../capturas/srv1/samba_activo.png" width="650">
+</p>
+
+---
+
+## 4. Creación del directorio compartido
 
 Se ha creado un directorio destinado a ser compartido en red:
 
@@ -34,15 +54,13 @@ Se han asignado los permisos necesarios:
 
 ---
 
-## 4. Configuración del recurso compartido
+## 5. Configuración del recurso compartido
 
 Se ha editado el archivo de configuración de Samba:
 
 `sudo nano /etc/samba/smb.conf`
 
-La configuración se ha añadido en la sección de recursos compartidos del archivo smb.conf.
-
-Se ha añadido el siguiente recurso compartido:
+Se ha añadido el siguiente recurso compartido al final del archivo:
 
 [Compartido]  
 path = /srv/samba/compartido  
@@ -56,9 +74,12 @@ Se ha comprobado la sintaxis de la configuración:
 
 `testparm`
 
+Resultado:  
+Configuración válida sin errores
+
 ---
 
-## 5. Reinicio del servicio
+## 6. Reinicio del servicio
 
 Para aplicar los cambios realizados se ha reiniciado el servicio Samba:
 
@@ -66,29 +87,37 @@ Para aplicar los cambios realizados se ha reiniciado el servicio Samba:
 
 ---
 
-## 6. Verificación del servicio
+## 7. Verificación del servicio
 
 Se ha comprobado que el servicio está funcionando correctamente:
 
-`systemctl status smbd`  
+`systemctl status smbd`
 
-Resultado: servicio activo (running)
+Resultado:  
+Servicio activo en ejecución (**active (running)**)
 
-También se ha verificado el acceso desde un cliente utilizando las credenciales del usuario configurado.
+También se ha verificado el acceso desde un cliente Windows utilizando las credenciales del usuario configurado (**alumno**).
+
+Se accede al recurso mediante:
+
+`\\192.168.1.137`
+
+Se ha creado un archivo de prueba (**prueba.txt**) dentro del recurso compartido, confirmando los permisos de escritura.
 
 <p align="center">
-<img src="../capturas/srv1/acceso_windows.png" width="650">
+  <img src="../capturas/srv1/samba_acceso.png" width="650">
 </p>
 
 ---
 
-## 7. Estado final
+## 8. Estado final
 
 Tras la configuración realizada:
 
 - Servicio Samba instalado y operativo  
 - Recurso compartido configurado correctamente  
 - Usuario con permisos de acceso configurado  
-- Acceso desde cliente verificado  
+- Permisos de lectura y escritura verificados  
+- Acceso desde cliente validado  
 
 El servidor queda preparado para compartir archivos dentro de la red.
