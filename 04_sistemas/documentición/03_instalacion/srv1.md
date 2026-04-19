@@ -53,21 +53,9 @@ Una vez finalizada la instalación y reiniciado el sistema, se ha comprobado el 
 
 ---
 
-### Verificación inicial
+### Verificación inicial del sistema
 
-Se ha verificado que el sistema arranca correctamente y permite el acceso sin errores.
+Se ha verificado el correcto funcionamiento básico del sistema mediante acceso a la terminal.
 
-El servidor queda listo para la configuración de red y la instalación de servicios.
-
----
-
-### Estado final del sistema
-
-Tras completar la instalación:
-
-- Sistema operativo instalado correctamente  
-- Usuario configurado y operativo  
-- Acceso por consola funcional  
-- Servicio SSH disponible  
-
-El servidor se encuentra preparado para continuar con la configuración del sistema.
+```bash
+usuario@srv1:~$
