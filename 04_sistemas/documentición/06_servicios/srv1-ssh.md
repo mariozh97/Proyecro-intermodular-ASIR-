@@ -38,7 +38,7 @@ Comando utilizado:
 `ssh usuario@192.168.1.137`
 
 Resultado:  
-Se establece conexión correctamente solicitando las credenciales del usuario.
+Se establece conexión correctamente solicitando las credenciales del usuario y mostrando el acceso al sistema.
 
 <p align="center">
   <img src="../capturas/srv1/ssh_login.png" width="650">
@@ -46,7 +46,18 @@ Se establece conexión correctamente solicitando las credenciales del usuario.
 
 ---
 
-## 5. Funcionamiento del servicio
+## 5. Verificación adicional
+
+Se comprueba que el servicio SSH está habilitado en el arranque del sistema:
+
+`systemctl is-enabled ssh`
+
+Resultado:  
+enabled
+
+---
+
+## 6. Funcionamiento del servicio
 
 Una vez autenticado, se obtiene acceso a la terminal del servidor, lo que permite:
 
@@ -56,11 +67,12 @@ Una vez autenticado, se obtiene acceso a la terminal del servidor, lo que permit
 
 ---
 
-## 6. Estado final
+## 7. Estado final
 
 El servicio SSH se encuentra correctamente operativo:
 
 - Servicio activo  
+- Servicio habilitado en el arranque  
 - Acceso remoto funcional  
 - Autenticación de usuarios operativa  
 
