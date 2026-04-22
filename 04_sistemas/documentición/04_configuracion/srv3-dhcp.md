@@ -8,14 +8,6 @@ Este servidor tiene como función principal actuar como **servidor DHCP** dentro
 
 ---
 
-## 1.1 Objetivo de la configuración
-
-El objetivo de esta fase es preparar el servidor **srv3** para su funcionamiento como servidor DHCP dentro de la infraestructura del proyecto.
-
-Se configuran los servicios, la red, los usuarios y los permisos necesarios para garantizar el correcto funcionamiento del sistema.
-
----
-
 ## 2. Configuración de red
 
 Se ha verificado la configuración de red mediante el comando `ip a`.
