@@ -33,7 +33,7 @@ Se han definido claves primarias (PK) y claves foráneas (FK) para garantizar la
 
 ## Estructura del proyecto
 
-```
+```id="x3k8pj"
 05_base_datos/
 ├── scripts_sql/
 │   ├── 01_creacion.sql
@@ -86,8 +86,20 @@ Se han definido claves primarias (PK) y claves foráneas (FK) para garantizar la
 
 ---
 
+## Administración básica
+
+Se han realizado tareas básicas de administración de la base de datos como:
+
+* Creación de la base de datos y tablas mediante scripts SQL
+* Inserción de datos de prueba coherentes
+* Ejecución de consultas para verificar el funcionamiento del sistema
+* Uso de MySQL Workbench para la gestión y visualización de la base de datos
+* Organización de los scripts y documentación en un repositorio GitHub
+
+Estas tareas permiten mantener, comprobar y gestionar correctamente el sistema de base de datos.
+
+---
+
 ## Conclusión
 
 La base de datos permite gestionar correctamente la información de la empresa, garantizando la integridad de los datos y permitiendo consultas eficientes mediante SQL.
-
-
