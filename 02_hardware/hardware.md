@@ -1,199 +1,275 @@
-# Memoria Técnica de Hardware - Proyecto Intermodular ASIR
+# 📄 MEMORIA TÉCNICA DE HARDWARE  
+**Proyecto Intermodular ASIR**
 
 ---
 
-## 1. Análisis de necesidades y dimensionamiento
+## 📑 Índice
 
-La empresa para la que he diseñado esta infraestructura es una empresa de desarrollo de software con 20 empleados repartidos en varios departamentos: desarrollo (8), administración (3), dirección (2), soporte (3), formación (2) e infraestructura IT (2).
-
-No todos los departamentos tienen las mismas necesidades. Los de desarrollo e IT necesitan equipos bastante más potentes, ya que trabajan con máquinas virtuales, contenedores Docker y compilación de código. En cambio, los departamentos de administración, dirección, soporte y formación pueden trabajar con equipos más sencillos.
-
-Por eso he decidido diferenciar dos tipos de equipos, además de un servidor central que gestionará todos los servicios de la empresa.
+1. Introducción  
+2. Análisis de necesidades  
+3. Dimensionamiento de la infraestructura  
+4. Equipos cliente  
+ 4.1 Equipos de alto rendimiento  
+ 4.2 Equipos de perfil medio  
+5. Servidor del CPD  
+6. Componentes hardware explicados  
+7. Justificación de la elección del hardware  
+8. Explicación técnica de las placas base  
+9. Almacenamiento y copias de seguridad  
+10. Equipamiento del CPD  
+11. Equipamiento de red  
+12. Presupuesto detallado  
+13. Evidencias de compra  
+14. Limitaciones de la solución  
+15. Conclusión  
 
 ---
 
-## 1.1 Inventario de equipos
+## 1. Introducción
 
-| Tipo de Equipo | Cantidad | Destino |
-|:---|:---:|:---|
-| Alto Rendimiento | 10 | Desarrollo (8) + IT (2) |
-| Perfil Medio | 10 | Administración, Dirección, Soporte, Formación |
-| Servidor físico | 1 | CPD (virtualización) |
+Este documento define y justifica el hardware necesario para la infraestructura IT de una empresa de desarrollo de software simulada en el Proyecto Intermodular ASIR.
 
-He optado por un solo servidor físico porque voy a utilizar virtualización, lo que permite tener varios servidores sin necesidad de comprar hardware adicional.
+La empresa requiere una infraestructura capaz de soportar:
+
+- Entornos de desarrollo  
+- Virtualización  
+- Almacenamiento de datos  
+- Servicios internos accesibles desde la red  
+
+El diseño se basa en un **CPD centralizado con virtualización (Proxmox)**, equipos cliente diferenciados por perfil y una red segmentada mediante VLANs.
 
 ---
 
-## 1.2 Equipos de alto rendimiento
+## 2. Análisis de necesidades
 
-Para los equipos de desarrollo e IT he elegido una configuración basada en workstations como la Dell Precision 3660.
+La empresa cuenta con **20 empleados**:
+
+| Tipo de usuario | Necesidad |
+|----------------|----------|
+| Desarrollo / IT | Virtualización, compilación |
+| Administración | Ofimática |
+| Dirección | Gestión |
+| Soporte | Herramientas técnicas |
+| Formación | Uso general |
+
+---
+
+## 3. Dimensionamiento de la infraestructura
+
+| Tipo | Cantidad | Uso |
+|------|--------|-----|
+| Alto rendimiento | 10 | Desarrollo + IT |
+| Perfil medio | 10 | Resto |
+| Servidor | 1 | CPD |
+
+---
+
+## 4. Equipos cliente
+
+### 4.1 Equipos de alto rendimiento (Workstations)
 
 ![Workstation](capturas/precision3660.jpeg)
-Estación de trabajo Dell Precision 3660*
 
-| Componente | Especificación | Justificación |
-|:---|:---|:---|
-| CPU | Intel Core i9-14900K | 24 núcleos, ideal para compilación y virtualización |
-| Placa base | Chipset Z790 | Permite aprovechar CPUs de alto rendimiento y futuras ampliaciones |
-| RAM | 64 GB DDR5 | Permite ejecutar múltiples máquinas virtuales |
-| Almacenamiento | 2 TB SSD NVMe | Alta velocidad en carga de proyectos |
-| GPU | RTX 4070 | Útil en proyectos gráficos o IA |
-| Fuente | 850W 80+ Gold | Estabilidad energética |
+**Configuración:**
 
-Los equipos de alto rendimiento disponen de ranuras PCIe que permiten añadir tarjetas de expansión como GPU adicionales o tarjetas de red, lo que facilita futuras ampliaciones.
+- CPU: Intel Core i9-14900K  
+- RAM: 64 GB DDR5  
+- SSD: 2 TB NVMe  
+- GPU: NVIDIA RTX 4070  
 
-En este caso he priorizado bastante la RAM, ya que en desarrollo es más importante poder levantar entornos completos que tener una gráfica muy potente.
+💰 Precio estimado: 2.400 – 2.800 €
+
+**Justificación:**  
+Equipos destinados a desarrollo e IT, preparados para virtualización, compilación de software y uso de contenedores.
 
 ---
 
-## 1.3 Equipos de perfil medio
+### 4.2 Equipos de perfil medio (Oficina)
 
-Para administración, dirección, soporte y formación he elegido equipos tipo Dell OptiPlex.
+![Equipo oficina](capturas/optiplex.jpg)
 
-![PC estándar](capturas/optiplex.jpg)
-*Equipo de oficina Dell OptiPlex*
+**Configuración:**
 
-| Componente | Especificación | Justificación |
-|:---|:---|:---|
-| CPU | Intel Core i5-14500 | Buen rendimiento general |
-| Placa base | Chipset Q670 | Diseñada para entornos empresariales, estable y con opciones de gestión |
-| RAM | 16 GB | Suficiente para multitarea |
-| Almacenamiento | 512 GB SSD | Arranque rápido y fluidez |
-| Formato | SFF | Ocupa poco espacio |
+- CPU: Intel Core i5-14500  
+- RAM: 16 GB DDR5  
+- SSD: 512 GB NVMe  
+- Formato: SFF  
 
-Son equipos equilibrados, suficientes para el trabajo diario sin necesidad de sobredimensionar.
+💰 Precio estimado: 700 – 900 €
+
+**Justificación:**  
+Adecuados para tareas de ofimática, navegación y software empresarial.
 
 ---
 
-## 1.4 Servidor (CPD)
-
-El servidor es el núcleo de la infraestructura. Aquí es donde se ejecutan todos los servicios.
-
-He elegido un Dell PowerEdge R660.
+## 5. Servidor del CPD
 
 ![Servidor](capturas/servidor_r660.png)
-*Servidor Dell PowerEdge R660*
 
+**Configuración:**
 
-| Componente | Especificación |
-|:---|:---|
-| CPU | 2x Intel Xeon Silver |
-| RAM | 128 GB ECC |
-| Almacenamiento SO | 2x 480GB SSD RAID 1 |
-| Datos | 4x 2TB SAS RAID 10 |
-| Red | 2x 1GbE |
-| Fuente | Redundante |
+- CPU: 2× Intel Xeon Silver  
+- RAM: 128 GB ECC  
+- SO: 2× SSD 480 GB (RAID 1)  
+- Datos: 4× SAS 2 TB (RAID 10)  
+- Red: 2× 1 GbE  
+- Fuente: Redundante  
 
-He aumentado la RAM porque este servidor va a soportar varias máquinas virtuales al mismo tiempo.
+💰 Precio estimado: 6.000 – 8.000 €
 
-Se ha optado por memoria RAM ECC (Error Correcting Code) en el servidor para evitar errores de memoria que puedan afectar a los datos, algo especialmente importante en entornos virtualizados donde se ejecutan varios servicios críticos.
+**Justificación:**  
+Servidor encargado de la virtualización mediante Proxmox y de alojar servicios críticos como DNS, DHCP, web y copias de seguridad.
 
-Aunque esta configuración puede parecer algo elevada, he preferido asegurar margen suficiente para virtualización, evitando problemas de rendimiento a corto plazo.
-
----
-
-## 1.5 Virtualización
-
-Para optimizar recursos, he decidido usar Proxmox VE.
-
-Dentro del servidor físico se ejecutan:
-
-- SRV-AD/DNS/DHCP  
-- SRV-WEB  
-- SRV-BACKUP  
-
-Esto permite tener los mismos servicios que en la red (Packet Tracer) pero sin necesidad de 3 servidores físicos.
-Además, facilita la administración y permite migrar servicios entre máquinas virtuales en caso de fallo.
+En un entorno real, se implementaría un cluster para alta disponibilidad.
 
 ---
 
-## 1.6 Sistema de almacenamiento
+## 6. Componentes hardware explicados
 
-| Elemento | Uso |
-|:---|:---|
-| SSD NVMe | Equipos cliente |
-| HDD SAS | Datos del servidor |
-| RAID 1 | Sistema |
-| RAID 10 | Datos |
+**CPU:**  
+Ejecuta instrucciones y procesos. Más núcleos y multihilo mejoran el rendimiento en virtualización.
 
-He elegido RAID 10 porque ofrece un buen equilibrio entre rendimiento y seguridad.
+**RAM:**  
+Determina el número de máquinas virtuales simultáneas. La memoria ECC evita errores en servidores.
 
-### Copias de seguridad
+**Almacenamiento:**  
+SSD NVMe proporciona alta velocidad. SAS ofrece mayor fiabilidad en servidores.
 
-Se sigue la regla 3-2-1:
+**RAID:**  
+- RAID 1 → redundancia  
+- RAID 10 → combinación de rendimiento y seguridad  
+
+---
+
+## 7. Justificación de la elección del hardware
+
+- Alto rendimiento para desarrollo  
+- Fiabilidad en el servidor (ECC, RAID, redundancia)  
+- Escalabilidad futura  
+- Integración con la red (VLAN 60 para servidores)  
+- Optimización de costes  
+
+---
+
+## 8. Explicación técnica de las placas base
+
+**Z790 (alto rendimiento):**
+- Soporte DDR5  
+- PCIe 5.0  
+- Múltiples NVMe  
+
+**Q670 (oficina):**
+- Intel vPro  
+- TPM 2.0  
+- Alta estabilidad  
+
+**Servidor (PowerEdge):**
+- RAM ECC  
+- RAID  
+- iDRAC  
+- Redundancia  
+
+---
+
+## 9. Almacenamiento y copias de seguridad
+
+![NAS Synology](capturas/nas_synology.png)
+
+Se aplica la estrategia **3-2-1**:
+
+- 3 copias de los datos  
+- 2 soportes distintos  
+- 1 copia externa  
+
+Incluye:
 
 - Servidor de backup  
-- NAS  
-- Copia externa  
-
-El NAS permite separar las copias de seguridad del servidor principal, evitando que un fallo en el servidor afecte también a los backups.
-
-![NAS](capturas/nas_synology.png)
-*NAS Synology para copias de seguridad*
+- NAS dedicado  
+- Copia externa periódica  
 
 ---
 
-## 1.7 Alimentación y rack
-
-Para proteger el sistema:
-
-- SAI APC Smart-UPS  
-- Rack 19” de 22U  
+## 10. Equipamiento del CPD
 
 ![Rack](capturas/rack_22u.jpg)
-*Armario rack 19” de 22U*
 
-El rack permite organizar todo el equipamiento del CPD y facilita bastante el mantenimiento.
+| Elemento | Función |
+|---------|--------|
+| Rack 19" | Organización |
+| SAI | Protección eléctrica |
+| NAS | Copias de seguridad |
+
+En un entorno real se incluiría climatización.
 
 ---
 
-## 1.8 Equipamiento de red
+## 11. Equipamiento de red
 
 | Dispositivo | Modelo |
 |------------|--------|
 | Router | Cisco 2911 |
 | Switches | Cisco 2960 |
-| Access Point | AP empresarial |
+| AP | Empresarial |
 
-Es el mismo equipamiento que se ha utilizado en la práctica de redes.
-
----
-
-## 1.9 Evolución del sistema
-
-Si la empresa crece:
-
-- Añadir segundo servidor  
-- Ampliar RAM  
-- Incorporar NAS dedicado  
-- Usar cloud híbrido  
+El uso de Cisco es coherente con el entorno de simulación en Packet Tracer.
 
 ---
 
-## 2. Presupuesto estimado (orientativo)
-
-Los precios son orientativos y pueden variar según proveedor y configuración concreta.  
-Por ejemplo, el servidor puede oscilar entre 6.000 € y 8.000 € dependiendo de la cantidad de RAM, discos y soporte contratado.
+## 12. Presupuesto detallado
 
 | Equipo | Cantidad | Precio | Total |
 |--------|----------|--------|-------|
-| Workstation | 10 | 2.500 € | 25.000 € |
-| PC estándar | 10 | 800 € | 8.000 € |
-| Servidor | 1 | 6.000 € | 6.000 € |
+| Workstations | 10 | 2.500 € | 25.000 € |
+| PCs oficina | 10 | 800 € | 8.000 € |
+| Servidor | 1 | 7.000 € | 7.000 € |
 | NAS | 1 | 700 € | 700 € |
 | SAI | 2 | 800 € | 1.600 € |
 
-**TOTAL: 41.300 €**
+👉 **Total estimado: 42.300 €**
 
 ---
 
-## 3. Conclusión
+## 13. Evidencias de compra
 
-Creo que la infraestructura está bastante equilibrada:
+Precios basados en configuraciones reales de:
 
-- Los equipos de desarrollo tienen potencia suficiente  
-- El servidor centraliza todos los servicios  
-- La red y el hardware están alineados  
-- Se puede ampliar sin tener que rehacer todo  
+- Dell Precision / PowerEdge  
+- HP Enterprise  
+- PcComponentes  
+- Amazon  
 
-He intentado buscar un equilibrio entre rendimiento y coste, pensando en una empresa real que pueda crecer con el tiempo.
+Ejemplos:
+
+- Workstations → 2.400–2.800 €  
+- PCs → 700–900 €  
+- Servidores → desde 6.000 €  
+
+Se han consultado configuradores oficiales para obtener valores realistas.
+
+---
+
+## 14. Limitaciones de la solución
+
+- Un único servidor (punto de fallo)  
+- Red de 1 GbE  
+- Sin alta disponibilidad  
+
+Soluciones en entorno real:
+
+- Cluster Proxmox  
+- Red 10 GbE  
+- Almacenamiento distribuido  
+
+---
+
+## 15. Conclusión
+
+La infraestructura propuesta:
+
+- Se adapta a las necesidades reales  
+- Está correctamente dimensionada  
+- Permite crecimiento futuro  
+- Garantiza estabilidad en el CPD  
+- Mantiene equilibrio coste/rendimiento  
+
+Además, se integra correctamente con la red y los sistemas, formando una solución completa, coherente y profesional.
