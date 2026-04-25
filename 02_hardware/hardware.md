@@ -1,9 +1,9 @@
-# 📄 MEMORIA TÉCNICA DE HARDWARE  
+# MEMORIA TÉCNICA DE HARDWARE  
 **Proyecto Intermodular ASIR**
 
 ---
 
-## 📑 Índice
+## Índice
 
 1. Introducción  
 2. Análisis de necesidades  
@@ -28,7 +28,7 @@
 
 ## 1. Introducción
 
-El presente documento recoge el diseño y la justificación del hardware necesario para la implantación de la infraestructura informática de una empresa dedicada al desarrollo de software.
+El documento recoge el diseño y la justificación del hardware necesario para la implantación de la infraestructura informática de una empresa dedicada al desarrollo de software.
 
 El objetivo es definir una arquitectura sólida, segura y escalable. Se plantea un modelo centralizado donde un servidor de alto rendimiento asume la carga de servicios y virtualización, mientras que los equipos cliente se ajustan a la carga de trabajo específica de cada departamento. Este enfoque permite optimizar el uso de recursos, facilitar la administración y reducir costes operativos.
 
