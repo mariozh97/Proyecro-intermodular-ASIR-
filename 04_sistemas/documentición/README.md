@@ -44,17 +44,17 @@ Se han configurado tres servidores principales:
 
 | Servidor | Función principal | Dirección IP |
 |----------|------------------|--------------|
-| **srv1** | DNS, Samba y SSH | DHCP (192.168.1.x) |
-| **srv2** | Servidor Web (Apache) | DHCP (192.168.1.x) |
-| **srv3** | Servidor DHCP | 10.0.2.15 |
+| srv1     | DNS, Samba y SSH | DHCP (192.168.1.x) |
+| srv2     | Servidor Web (Apache) | DHCP (192.168.1.x) |
+| srv3     | Servidor DHCP | 10.0.2.15 |
 
 ---
 
 ## 4. Entorno de trabajo
 
-- **Hipervisor:** VirtualBox  
-- **Sistema operativo:** Ubuntu Server 24.04 LTS  
-- **Configuración de red:**
+- Hipervisor: VirtualBox  
+- Sistema operativo: Ubuntu Server 24.04 LTS  
+- Configuración de red:
   - Adaptador puente: srv1 y srv2  
   - NAT: srv3  
 
@@ -68,43 +68,141 @@ En todos los servidores se ha seguido el mismo procedimiento:
 2. Asignación de recursos (CPU, RAM y almacenamiento)  
 3. Instalación de Ubuntu Server  
 4. Configuración inicial del sistema (usuario, hostname y acceso SSH)  
-5. Actualización del sistema mediante `apt`  
+5. Actualización del sistema  
 
 ---
 
 ## 6. Configuración de red y conectividad
 
-La configuración de red se ha realizado mediante DHCP en todos los servidores para asegurar la salida a Internet y la comunicación interna inicial.
+La configuración de red se ha realizado mediante DHCP en todos los servidores.
 
 Se han verificado los siguientes aspectos:
-- Asignación correcta de dirección IP.
-- Conectividad a Internet (repositorios).
-- Visibilidad entre nodos.
+
+- Asignación correcta de dirección IP  
+- Configuración de puerta de enlace  
+- Conectividad a red local  
+- Conectividad a Internet  
 
 ---
 
 ## 7. Consideraciones sobre el entorno virtual
 
-Debido al uso de VirtualBox, los servidores no se encuentran completamente integrados en el esquema de direccionamiento definido en el diseño de red teórico del proyecto.
+Debido al uso de VirtualBox, los servidores no se encuentran completamente integrados en el esquema de direccionamiento definido en el diseño de red del proyecto.
 
-En un entorno real, todos los servidores estarían configurados con direcciones IP estáticas dentro de las VLANs definidas, siguiendo el plan de direccionamiento establecido en el diseño de red empresarial.
+Las direcciones IP asignadas pertenecen a redes generadas por el propio entorno de virtualización.
+
+En un entorno real, todos los servidores estarían configurados con direcciones IP estáticas dentro de las VLANs definidas en el diseño de red, siguiendo el plan de direccionamiento establecido.
 
 ---
 
 ## 8. Servicios implementados por servidor
 
 ### 8.1 srv1 – Servidor de infraestructura
-Este servidor proporciona servicios internos clave para el almacenamiento y resolución de nombres:
-- **Servicio DNS** para resolución de nombres interna.
-- **Servicio Samba** para compartición de archivos entre departamentos.
-- **Acceso remoto** mediante SSH.
+
+Este servidor proporciona servicios internos clave:
+
+- Servicio DNS para resolución de nombres  
+- Servicio Samba para compartición de archivos  
+- Acceso remoto mediante SSH  
 
 ---
 
 ### 8.2 srv2 – Servidor web
-Se ha instalado y configurado el servidor web Apache para dar soporte al departamento de desarrollo.
 
-**Comandos utilizados:**
-```bash
-sudo apt update
-sudo apt install apache2 -y
+Se ha instalado y configurado el servidor web Apache.
+
+Comandos utilizados:
+
+sudo apt update  
+sudo apt install apache2 -y  
+
+Verificación:
+
+systemctl status apache2  
+curl http://localhost  
+
+El servicio se encuentra activo y accesible desde la red.
+
+---
+
+### 8.3 srv3 – Servidor DHCP
+
+Se ha instalado y configurado el servicio DHCP.
+
+Instalación:
+
+sudo apt install isc-dhcp-server -y  
+
+Configuración aplicada:
+
+- Red: 10.0.2.0/24  
+- Rango de direcciones: 10.0.2.50 – 10.0.2.100  
+- Puerta de enlace: 10.0.2.2  
+- DNS: 8.8.8.8  
+
+Interfaz configurada:
+
+INTERFACESv4="enp0s3"  
+
+Verificación:
+
+systemctl status isc-dhcp-server  
+journalctl -u isc-dhcp-server  
+
+El servicio se encuentra activo y funcionando correctamente.
+
+---
+
+## 9. Gestión de usuarios
+
+Se ha creado un usuario administrativo:
+
+sudo adduser tecnico  
+sudo usermod -aG sudo tecnico  
+
+Verificación:
+
+id tecnico  
+
+El usuario pertenece al grupo sudo y dispone de privilegios administrativos.
+
+---
+
+## 10. Gestión de permisos y almacenamiento
+
+Se ha creado un directorio de trabajo:
+
+sudo mkdir /datos  
+sudo chown tecnico:tecnico /datos  
+
+Verificación:
+
+ls -ld /datos  
+
+El directorio queda asignado correctamente al usuario correspondiente.
+
+---
+
+## 11. Comprobaciones realizadas
+
+| Comprobación | Comando | Resultado |
+|-------------|--------|----------|
+| Dirección IP | ip a | Correcto |
+| Conectividad | ping -c 4 8.8.8.8 | Correcto |
+| Servicio Apache | systemctl status apache2 | Activo |
+| Servicio DHCP | systemctl status isc-dhcp-server | Activo |
+| Usuario | id tecnico | Correcto |
+| Permisos | ls -ld /datos | Correcto |
+
+---
+
+## 12. Estado final y conclusión
+
+Tras completar la implantación:
+
+- Sistemas operativos instalados correctamente  
+- Red configurada y operativa  
+- Servicios activos (DNS, Samba, Apache y DHCP)  
+- Usuarios y permisos configurados correctamente  
+
+La infraestructura de servidores se encuentra operativa y preparada para integrarse en el resto del proyecto intermodular.
