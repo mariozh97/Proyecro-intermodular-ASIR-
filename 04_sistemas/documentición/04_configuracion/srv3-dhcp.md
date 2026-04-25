@@ -91,7 +91,19 @@ Esto permite verificar la actividad del servicio y posibles asignaciones de dire
 
 ---
 
-## 7. Gestión de usuarios
+## 7. Consideraciones sobre el entorno de red
+
+Debido a las limitaciones del entorno de virtualización utilizado (VirtualBox), el servidor **srv3** se encuentra en una red interna (10.0.2.0/24) distinta al esquema de direccionamiento definido en el diseño de red del proyecto.
+
+Esta red corresponde al modo NAT de VirtualBox, utilizado para facilitar la conectividad y pruebas durante la fase de implantación.
+
+Por este motivo, el servicio DHCP se configura sobre la red 10.0.2.0/24, permitiendo comprobar su funcionamiento en un entorno aislado.
+
+En un entorno real, el servidor DHCP estaría configurado dentro de la VLAN correspondiente (por ejemplo 192.168.10.0/24 o VLAN de servicios), gestionando el direccionamiento IP de todos los dispositivos de la red según el plan definido.
+
+---
+
+## 8. Gestión de usuarios
 
 Se ha creado un usuario adicional para tareas administrativas:
 
@@ -104,7 +116,7 @@ Se ha creado un usuario adicional para tareas administrativas:
 
 ---
 
-## 8. Gestión de permisos
+## 9. Gestión de permisos
 
 Se ha creado un directorio para almacenamiento de datos:
 
@@ -117,7 +129,7 @@ Se ha creado un directorio para almacenamiento de datos:
 
 ---
 
-## 9. Comprobaciones finales
+## 10. Comprobaciones finales
 
 Se han realizado las siguientes comprobaciones para verificar el correcto funcionamiento del servidor:
 
@@ -134,7 +146,7 @@ Estas comprobaciones permiten verificar que el servicio DHCP está activo y func
 
 ---
 
-## 10. Estado final
+## 11. Estado final
 
 Tras completar la configuración:
 
