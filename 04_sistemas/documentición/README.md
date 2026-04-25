@@ -24,29 +24,29 @@
 
 Este documento detalla la fase de implantación de sistemas operativos para la infraestructura de una empresa de desarrollo de software.
 
-Se ha llevado a cabo la instalación, configuración y puesta en marcha de varios servidores basados en Ubuntu Server 24.04 LTS, cada uno con un rol específico dentro de la red.
+Se ha llevado a cabo la instalación, configuración y puesta en marcha de varios servidores basados en Ubuntu Server 24.04 LTS, cada uno con un rol específico dentro de la red empresarial, garantizando un entorno estable para el desarrollo y la gestión de datos.
 
 ---
 
 ## 2. Objetivos
 
-- Implantar sistemas operativos en un entorno virtualizado  
-- Configurar servicios de red esenciales  
-- Implementar servidores funcionales para distintos roles  
-- Gestionar usuarios y permisos  
-- Verificar el correcto funcionamiento del sistema  
+- Implantar sistemas operativos robustos en un entorno virtualizado  
+- Configurar servicios de red esenciales para la operativa de la empresa  
+- Implementar servidores funcionales con roles diferenciados (Web, Ficheros, DNS y DHCP)  
+- Gestionar usuarios y permisos según la estructura organizativa  
+- Verificar la conectividad y el estado de los servicios mediante pruebas reales  
 
 ---
 
 ## 3. Infraestructura desplegada
 
-Se han configurado tres servidores principales:
+Siguiendo el diseño técnico del proyecto, se han configurado los siguientes servidores:
 
-| Servidor | Función principal | Dirección IP |
-|----------|------------------|--------------|
-| srv1     | DNS, Samba y SSH | DHCP (192.168.1.x) |
-| srv2     | Servidor Web (Apache) | DHCP (192.168.1.x) |
-| srv3     | Servidor DHCP | 10.0.2.15 |
+| Servidor | Función principal | Dirección IP | Rol Departamental |
+|----------|------------------|--------------|-------------------|
+| **srv1** | DNS, Samba y SSH | DHCP (192.168.1.x) | Administración / Dirección |
+| **srv2** | Servidor Web (Apache) | DHCP (192.168.1.x) | Desarrollo / Pruebas |
+| **srv3** | Servidor DHCP | 10.0.2.15 | Soporte Técnico / Red |
 
 ---
 
@@ -62,36 +62,32 @@ Se han configurado tres servidores principales:
 
 ## 5. Instalación del sistema operativo
 
-En todos los servidores se ha seguido el mismo procedimiento:
+En todos los nodos se ha seguido un procedimiento estandarizado:
 
-1. Creación de la máquina virtual  
-2. Asignación de recursos (CPU, RAM y almacenamiento)  
-3. Instalación de Ubuntu Server  
-4. Configuración inicial del sistema (usuario, hostname y acceso SSH)  
+1. Creación de la máquina virtual con asignación de CPU y RAM  
+2. Instalación de Ubuntu Server mediante imagen ISO  
+3. Configuración del hostname y usuario inicial  
+4. Activación del servicio SSH  
 5. Actualización del sistema  
 
 ---
 
 ## 6. Configuración de red y conectividad
 
-La configuración de red se ha realizado mediante DHCP en todos los servidores.
-
-Se han verificado los siguientes aspectos:
+La configuración de red se ha gestionado mediante DHCP en esta fase para asegurar:
 
 - Asignación correcta de dirección IP  
 - Configuración de puerta de enlace  
-- Conectividad a red local  
-- Conectividad a Internet  
+- Acceso a Internet  
+- Comunicación entre servidores  
 
 ---
 
 ## 7. Consideraciones sobre el entorno virtual
 
-Debido al uso de VirtualBox, los servidores no se encuentran completamente integrados en el esquema de direccionamiento definido en el diseño de red del proyecto.
+Debido al uso de VirtualBox, las direcciones IP asignadas pertenecen a redes del propio hipervisor.
 
-Las direcciones IP asignadas pertenecen a redes generadas por el propio entorno de virtualización.
-
-En un entorno real, todos los servidores estarían configurados con direcciones IP estáticas dentro de las VLANs definidas en el diseño de red, siguiendo el plan de direccionamiento establecido.
+En un entorno real, los servidores estarían configurados con direcciones IP estáticas dentro de las VLANs definidas en el diseño de red.
 
 ---
 
@@ -99,110 +95,86 @@ En un entorno real, todos los servidores estarían configurados con direcciones 
 
 ### 8.1 srv1 – Servidor de infraestructura
 
-Este servidor proporciona servicios internos clave:
+Este nodo centraliza servicios internos:
 
-- Servicio DNS para resolución de nombres  
-- Servicio Samba para compartición de archivos  
-- Acceso remoto mediante SSH  
+- DNS: Resolución de nombres  
+- Samba: Compartición de archivos  
+- SSH: Acceso remoto seguro  
 
 ---
 
 ### 8.2 srv2 – Servidor web
 
-Se ha instalado y configurado el servidor web Apache.
+Servidor destinado al despliegue de aplicaciones web.
 
-Comandos utilizados:
+**Instalación:**
 
 sudo apt update  
 sudo apt install apache2 -y  
 
-Verificación:
+**Verificación:**
 
-systemctl status apache2  
-curl http://localhost  
-
-El servicio se encuentra activo y accesible desde la red.
+La disponibilidad del servicio se ha comprobado mediante la visualización de la página de inicio, confirmando que el servidor web está operativo.
 
 ---
 
 ### 8.3 srv3 – Servidor DHCP
 
-Se ha instalado y configurado el servicio DHCP.
+Servidor encargado de automatizar el direccionamiento de la red de pruebas.
 
-Instalación:
+**Configuración:**
 
-sudo apt install isc-dhcp-server -y  
-
-Configuración aplicada:
-
+- Software: isc-dhcp-server  
 - Red: 10.0.2.0/24  
 - Rango de direcciones: 10.0.2.50 – 10.0.2.100  
 - Puerta de enlace: 10.0.2.2  
-- DNS: 8.8.8.8  
 
-Interfaz configurada:
-
-INTERFACESv4="enp0s3"  
-
-Verificación:
-
-systemctl status isc-dhcp-server  
-journalctl -u isc-dhcp-server  
-
-El servicio se encuentra activo y funcionando correctamente.
+El servicio se encuentra activo y asignando direcciones correctamente.
 
 ---
 
 ## 9. Gestión de usuarios
 
-Se ha creado un usuario administrativo:
+Se ha implementado un esquema de usuarios para la administración técnica:
 
-sudo adduser tecnico  
-sudo usermod -aG sudo tecnico  
-
-Verificación:
-
-id tecnico  
-
-El usuario pertenece al grupo sudo y dispone de privilegios administrativos.
+- Usuario: tecnico  
+- Configuración: incorporación al grupo sudo para permitir tareas administrativas  
 
 ---
 
 ## 10. Gestión de permisos y almacenamiento
 
-Se ha creado un directorio de trabajo:
+Se ha creado una estructura de almacenamiento centralizada:
 
-sudo mkdir /datos  
-sudo chown tecnico:tecnico /datos  
+- Directorio: /datos  
+- Permisos: asignados al usuario tecnico mediante chown  
 
-Verificación:
-
-ls -ld /datos  
-
-El directorio queda asignado correctamente al usuario correspondiente.
+Esto garantiza que únicamente el personal autorizado pueda gestionar los archivos.
 
 ---
 
 ## 11. Comprobaciones realizadas
 
-| Comprobación | Comando | Resultado |
-|-------------|--------|----------|
+| Comprobación | Herramienta / Comando | Resultado |
+|-------------|----------------------|----------|
 | Dirección IP | ip a | Correcto |
 | Conectividad | ping -c 4 8.8.8.8 | Correcto |
-| Servicio Apache | systemctl status apache2 | Activo |
+| Servicio Apache | Verificación funcional | Activo |
 | Servicio DHCP | systemctl status isc-dhcp-server | Activo |
-| Usuario | id tecnico | Correcto |
+| Usuario sudo | id tecnico | Correcto |
 | Permisos | ls -ld /datos | Correcto |
 
 ---
 
 ## 12. Estado final y conclusión
 
-Tras completar la implantación:
+Tras completar la fase de implantación, la infraestructura de sistemas operativos se encuentra plenamente operativa.
 
-- Sistemas operativos instalados correctamente  
-- Red configurada y operativa  
-- Servicios activos (DNS, Samba, Apache y DHCP)  
-- Usuarios y permisos configurados correctamente  
+Se han desplegado correctamente los servicios de:
 
-La infraestructura de servidores se encuentra operativa y preparada para integrarse en el resto del proyecto intermodular.
+- DNS  
+- Samba  
+- Apache  
+- DHCP  
+
+El sistema queda preparado para su integración con el resto de módulos del proyecto intermodular.
