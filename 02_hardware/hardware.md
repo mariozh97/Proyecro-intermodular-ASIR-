@@ -20,7 +20,7 @@
 11. Equipamiento de red (Networking)  
 12. Garantías y ciclo de vida del hardware  
 13. Presupuesto detallado  
-14. Evidencias de compra (Enlaces)  
+14. Evidencias de compra  
 15. Limitaciones de la solución  
 16. Conclusión  
 
@@ -207,7 +207,7 @@ La red se segmenta mediante **VLANs** para separar el tráfico por departamentos
 
 ---
 
-## 14. Evidencias de compra (Enlaces)
+## 14. Evidencias de compra 
 
 * **Workstations:** [Dell Precision 3660](https://www.dell.com/es-es/shop/workstations/sf/precision-desktops)
 * **PCs Oficina:** [PcComponentes - OptiPlex](https://www.pccomponentes.com/mini-pc-dell-optiplex-7020-micro-intel-core-i5-14500t-16gb-512gb-ssd-windows-11-pro)
