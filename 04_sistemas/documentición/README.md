@@ -109,6 +109,8 @@ Este servidor proporciona servicios internos clave:
 
 ### 8.2 srv2 – Servidor web
 
+### 8.2 srv2 – Servidor web
+
 Se ha instalado y configurado el servidor web Apache.
 
 Comandos utilizados:
@@ -116,12 +118,16 @@ Comandos utilizados:
 sudo apt update  
 sudo apt install apache2 -y  
 
-Verificación:
+Para verificar el funcionamiento del servicio se han realizado las siguientes comprobaciones:
 
 systemctl status apache2  
 curl http://localhost  
 
-El servicio se encuentra activo y accesible.
+El servicio se encuentra activo y respondiendo correctamente a peticiones HTTP.
+
+<p align="center">
+  <img src="../capturas/srv2/apache_ok.png" width="650">
+</p>
 
 ---
 
