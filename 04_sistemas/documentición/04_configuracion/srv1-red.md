@@ -25,7 +25,7 @@ Se observa que la interfaz **enp0s3** está activa.
 
 ## 3. Configuración de red
 
-La configuración de red se realiza mediante DHCP, permitiendo al servidor obtener automáticamente una dirección IP dentro de la red local.
+La configuración de red se realiza mediante DHCP, permitiendo al servidor obtener una dirección IP automáticamente mediante DHCP desde la red física.
 
 La interfaz **enp0s3** está asociada a un adaptador en modo puente, lo que permite al servidor integrarse directamente en la red local.
 
@@ -60,7 +60,17 @@ Resultado:
 
 ---
 
-## 5. Estado final de la red
+## 5. Consideraciones sobre el entorno de red
+
+Debido a las limitaciones del entorno de virtualización utilizado (VirtualBox), la dirección IP asignada al servidor (192.168.1.137) no se encuentra dentro del esquema de direccionamiento definido en el diseño de red del proyecto.
+
+El uso del modo puente permite que el servidor obtenga una dirección IP directamente del router físico mediante DHCP, facilitando la conectividad durante la fase de implantación.
+
+En un entorno real, el servidor estaría configurado con una dirección IP estática dentro de la VLAN correspondiente, siguiendo el plan de direccionamiento definido (por ejemplo 192.168.10.0/24 para servidores).
+
+---
+
+## 6. Estado final de la red
 
 Tras las comprobaciones realizadas:
 
@@ -70,4 +80,3 @@ Tras las comprobaciones realizadas:
 - Conectividad a Internet verificada  
 
 El servidor queda correctamente configurado y preparado para la instalación de servicios.
-
