@@ -177,4 +177,3 @@ Se han desplegado correctamente los servicios de:
 - Apache  
 - DHCP  
 
-El sistema queda preparado para su integración con el resto de módulos del proyecto intermodular.
