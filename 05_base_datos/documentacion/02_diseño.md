@@ -151,6 +151,4 @@ Se garantiza la integridad referencial mediante claves foráneas:
 
 El diseño relacional obtenido permite representar de forma coherente la estructura de datos de la empresa.
 
-Se han aplicado buenas prácticas de modelado, separando correctamente las entidades y resolviendo las relaciones N:M mediante tablas intermedias.
-
 Este modelo está preparado para su implementación en SQL, garantizando la integridad de los datos y facilitando futuras consultas y ampliaciones del sistema.
