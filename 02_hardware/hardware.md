@@ -27,40 +27,37 @@
 
 ## 1. Introducción
 
-Este documento define y justifica el hardware necesario para la infraestructura IT de una empresa de desarrollo de software simulada en el Proyecto Intermodular ASIR.
+El presente documento recoge el diseño y la justificación del hardware necesario para la implantación de la infraestructura informática de una empresa dedicada al desarrollo de software.
 
-La empresa requiere una infraestructura capaz de soportar:
+El objetivo principal es definir una solución equilibrada que permita cubrir las necesidades reales de los distintos perfiles de usuario, garantizando un funcionamiento fluido del sistema, una correcta gestión de los recursos y la posibilidad de crecimiento a medio plazo.
 
-- Entornos de desarrollo  
-- Virtualización  
-- Almacenamiento de datos  
-- Servicios internos accesibles desde la red  
-
-El diseño se basa en un **CPD centralizado con virtualización (Proxmox)**, equipos cliente diferenciados por perfil y una red segmentada mediante VLANs.
+La infraestructura se organiza en torno a un servidor central encargado de la virtualización y la prestación de servicios, acompañado de equipos cliente adaptados al tipo de trabajo de cada departamento. Este enfoque permite centralizar la gestión, optimizar el uso del hardware disponible y facilitar el mantenimiento del sistema.
 
 ---
 
 ## 2. Análisis de necesidades
 
-La empresa cuenta con **20 empleados**:
+La empresa está compuesta por un total de 20 empleados distribuidos en diferentes áreas, cada una con requisitos técnicos distintos.
 
-| Tipo de usuario | Necesidad |
-|----------------|----------|
-| Desarrollo / IT | Virtualización, compilación |
-| Administración | Ofimática |
-| Dirección | Gestión |
-| Soporte | Herramientas técnicas |
-| Formación | Uso general |
+Los perfiles de desarrollo y administración de sistemas requieren equipos capaces de ejecutar múltiples procesos de forma simultánea, incluyendo máquinas virtuales, herramientas de desarrollo y servicios en segundo plano. Este tipo de carga implica un uso intensivo de CPU, memoria y almacenamiento.
+
+Por otro lado, los departamentos administrativos, de dirección y formación presentan un uso mucho más ligero del sistema, centrado principalmente en aplicaciones ofimáticas, navegación web y herramientas de gestión.
+
+Esta diferencia de necesidades hace necesario establecer una diferenciación clara entre tipos de equipos, evitando sobredimensionar los puestos de bajo consumo y asegurando al mismo tiempo el rendimiento en los puestos críticos.
 
 ---
 
 ## 3. Dimensionamiento de la infraestructura
 
-| Tipo | Cantidad | Uso |
-|------|--------|-----|
-| Alto rendimiento | 10 | Desarrollo + IT |
-| Perfil medio | 10 | Resto |
-| Servidor | 1 | CPD |
+A partir del análisis previo, se define la siguiente estructura:
+
+- 10 equipos de alto rendimiento destinados a desarrollo e IT  
+- 10 equipos de perfil medio para el resto de usuarios  
+- 1 servidor central encargado de la virtualización y servicios  
+
+Este modelo permite ajustar los recursos a las necesidades reales de cada usuario, evitando un gasto innecesario en hardware y manteniendo un rendimiento adecuado en los entornos de trabajo más exigentes.
+
+Además, la existencia de un servidor central facilita la concentración de servicios, lo que simplifica la administración y mejora la eficiencia del sistema.
 
 ---
 
@@ -74,13 +71,18 @@ La empresa cuenta con **20 empleados**:
 
 - CPU: Intel Core i9-14900K  
 - RAM: 64 GB DDR5  
-- SSD: 2 TB NVMe  
+- Almacenamiento: 2 TB SSD NVMe  
 - GPU: NVIDIA RTX 4070  
 
-💰 Precio estimado: 2.400 – 2.800 €
+**Precio estimado:** 2.400 – 2.800 €
 
-**Justificación:**  
-Equipos destinados a desarrollo e IT, preparados para virtualización, compilación de software y uso de contenedores.
+**Justificación**
+
+Estos equipos están orientados a tareas que requieren una elevada capacidad de procesamiento, como la ejecución simultánea de máquinas virtuales, compilación de proyectos o uso de entornos de desarrollo complejos.
+
+El uso de un procesador de gama alta con múltiples núcleos permite distribuir cargas de trabajo intensivas sin que el sistema se degrade. La memoria RAM, dimensionada en 64 GB, garantiza que varias máquinas virtuales puedan ejecutarse de forma simultánea sin provocar cuellos de botella.
+
+El almacenamiento NVMe ofrece velocidades muy superiores a los discos tradicionales, lo que se traduce en una mejora directa en tiempos de arranque, carga de aplicaciones y acceso a datos.
 
 ---
 
@@ -92,13 +94,15 @@ Equipos destinados a desarrollo e IT, preparados para virtualización, compilaci
 
 - CPU: Intel Core i5-14500  
 - RAM: 16 GB DDR5  
-- SSD: 512 GB NVMe  
-- Formato: SFF  
+- Almacenamiento: 512 GB SSD NVMe  
 
-💰 Precio estimado: 700 – 900 €
+**Precio estimado:** 700 – 900 €
 
-**Justificación:**  
-Adecuados para tareas de ofimática, navegación y software empresarial.
+**Justificación**
+
+Estos equipos están diseñados para tareas de baja exigencia computacional, como el uso de herramientas ofimáticas, navegación web y gestión administrativa.
+
+El hardware seleccionado permite un funcionamiento fluido en este tipo de aplicaciones sin necesidad de recurrir a configuraciones más costosas. Esto contribuye a optimizar el presupuesto global sin comprometer la experiencia de uso.
 
 ---
 
@@ -110,64 +114,60 @@ Adecuados para tareas de ofimática, navegación y software empresarial.
 
 - CPU: 2× Intel Xeon Silver  
 - RAM: 128 GB ECC  
-- SO: 2× SSD 480 GB (RAID 1)  
-- Datos: 4× SAS 2 TB (RAID 10)  
-- Red: 2× 1 GbE  
-- Fuente: Redundante  
+- Sistema: RAID 1 (SSD)  
+- Datos: RAID 10 (SAS)  
 
-💰 Precio estimado: 6.000 – 8.000 €
+**Precio estimado:** 6.000 – 8.000 €
 
-**Justificación:**  
-Servidor encargado de la virtualización mediante Proxmox y de alojar servicios críticos como DNS, DHCP, web y copias de seguridad.
+**Justificación**
 
-En un entorno real, se implementaría un cluster para alta disponibilidad.
+El servidor constituye el núcleo de la infraestructura, siendo responsable de alojar los servicios principales y las máquinas virtuales utilizadas en el entorno.
+
+El uso de procesadores Xeon está orientado a entornos de trabajo continuado, donde la estabilidad y la capacidad de procesamiento sostenido son factores clave. La memoria ECC añade una capa adicional de seguridad frente a errores, especialmente importante en sistemas que gestionan múltiples servicios simultáneamente.
+
+La configuración de almacenamiento combina redundancia y rendimiento, permitiendo mantener la disponibilidad de los datos incluso en caso de fallo de uno o varios discos.
 
 ---
 
 ## 6. Componentes hardware explicados
 
-**CPU:**  
-Ejecuta instrucciones y procesos. Más núcleos y multihilo mejoran el rendimiento en virtualización.
+**CPU**  
+La unidad central de procesamiento es el elemento encargado de ejecutar las instrucciones del sistema. En entornos con múltiples procesos concurrentes, como la virtualización, el número de núcleos y la capacidad de ejecución en paralelo adquieren especial relevancia.
 
-**RAM:**  
-Determina el número de máquinas virtuales simultáneas. La memoria ECC evita errores en servidores.
+**RAM**  
+La memoria RAM actúa como espacio de trabajo temporal. Una cantidad insuficiente puede provocar ralentizaciones importantes, especialmente cuando se ejecutan varias aplicaciones exigentes o máquinas virtuales de forma simultánea.
 
-**Almacenamiento:**  
-SSD NVMe proporciona alta velocidad. SAS ofrece mayor fiabilidad en servidores.
+**Almacenamiento**  
+El uso de unidades SSD NVMe mejora significativamente el rendimiento general del sistema. En entornos de servidor, los discos SAS ofrecen mayor fiabilidad y resistencia en operaciones continuadas.
 
-**RAID:**  
-- RAID 1 → redundancia  
-- RAID 10 → combinación de rendimiento y seguridad  
+**RAID**  
+La implementación de RAID permite combinar varios discos para mejorar la disponibilidad de los datos y el rendimiento del sistema. RAID 1 garantiza redundancia, mientras que RAID 10 combina seguridad y velocidad.
 
 ---
 
 ## 7. Justificación de la elección del hardware
 
-- Alto rendimiento para desarrollo  
-- Fiabilidad en el servidor (ECC, RAID, redundancia)  
-- Escalabilidad futura  
-- Integración con la red (VLAN 60 para servidores)  
-- Optimización de costes  
+La selección del hardware se ha realizado teniendo en cuenta varios factores clave.
+
+En primer lugar, el rendimiento necesario en los puestos de desarrollo obliga a priorizar procesadores de alta gama y una cantidad elevada de memoria RAM. Estas decisiones están directamente relacionadas con la naturaleza del trabajo que se va a realizar.
+
+En segundo lugar, la fiabilidad del sistema se refuerza mediante el uso de tecnologías como memoria ECC, sistemas RAID y fuentes de alimentación redundantes en el servidor.
+
+También se ha considerado la escalabilidad, seleccionando componentes que permitan futuras ampliaciones sin necesidad de sustituir completamente el sistema.
+
+Por último, se ha buscado mantener un equilibrio entre coste y prestaciones, invirtiendo más en los elementos críticos y ajustando el gasto en aquellos puestos donde no es necesario un alto rendimiento.
 
 ---
 
 ## 8. Explicación técnica de las placas base
 
-**Z790 (alto rendimiento):**
-- Soporte DDR5  
-- PCIe 5.0  
-- Múltiples NVMe  
+Las placas base utilizadas determinan en gran medida las capacidades de expansión y estabilidad del sistema.
 
-**Q670 (oficina):**
-- Intel vPro  
-- TPM 2.0  
-- Alta estabilidad  
+Las plataformas de alto rendimiento incorporan soporte para memorias rápidas, múltiples dispositivos de almacenamiento y tarjetas de expansión, lo que permite adaptarse a cargas de trabajo exigentes.
 
-**Servidor (PowerEdge):**
-- RAM ECC  
-- RAID  
-- iDRAC  
-- Redundancia  
+En los equipos de oficina se prioriza la estabilidad y la compatibilidad, con soluciones orientadas a entornos empresariales donde la fiabilidad es más importante que el rendimiento extremo.
+
+En el caso del servidor, la placa base incluye funcionalidades específicas como gestión remota, controladoras de almacenamiento avanzadas y soporte para memoria ECC, todas ellas orientadas a garantizar un funcionamiento continuo y estable.
 
 ---
 
@@ -175,17 +175,9 @@ SSD NVMe proporciona alta velocidad. SAS ofrece mayor fiabilidad en servidores.
 
 ![NAS Synology](capturas/nas_synology.png)
 
-Se aplica la estrategia **3-2-1**:
+La estrategia de copias de seguridad se basa en mantener varias copias de la información en distintos soportes, reduciendo así el riesgo de pérdida de datos.
 
-- 3 copias de los datos  
-- 2 soportes distintos  
-- 1 copia externa  
-
-Incluye:
-
-- Servidor de backup  
-- NAS dedicado  
-- Copia externa periódica  
+El uso de un sistema NAS permite disponer de un almacenamiento independiente del servidor principal, facilitando la recuperación de información en caso de fallo.
 
 ---
 
@@ -193,83 +185,47 @@ Incluye:
 
 ![Rack](capturas/rack_22u.jpg)
 
-| Elemento | Función |
-|---------|--------|
-| Rack 19" | Organización |
-| SAI | Protección eléctrica |
-| NAS | Copias de seguridad |
+El equipamiento del CPD está diseñado para organizar y proteger los elementos críticos de la infraestructura.
 
-En un entorno real se incluiría climatización.
+El uso de un rack permite estructurar los dispositivos de forma ordenada, facilitando su mantenimiento. El sistema de alimentación ininterrumpida protege frente a cortes eléctricos, evitando pérdidas de información y posibles daños en el hardware.
 
 ---
 
 ## 11. Equipamiento de red
 
-| Dispositivo | Modelo |
-|------------|--------|
-| Router | Cisco 2911 |
-| Switches | Cisco 2960 |
-| AP | Empresarial |
+La infraestructura de red se compone de un router, switches y un punto de acceso, encargados de interconectar los distintos dispositivos del sistema y permitir la comunicación entre ellos.
 
-El uso de Cisco es coherente con el entorno de simulación en Packet Tracer.
+Estos elementos son fundamentales para garantizar el acceso a los servicios internos y la conectividad entre departamentos.
 
 ---
 
 ## 12. Presupuesto detallado
 
-| Equipo | Cantidad | Precio | Total |
-|--------|----------|--------|-------|
-| Workstations | 10 | 2.500 € | 25.000 € |
-| PCs oficina | 10 | 800 € | 8.000 € |
-| Servidor | 1 | 7.000 € | 7.000 € |
-| NAS | 1 | 700 € | 700 € |
-| SAI | 2 | 800 € | 1.600 € |
+**Total estimado:** 42.300 €
 
-👉 **Total estimado: 42.300 €**
+El presupuesto se ha calculado tomando como referencia precios reales de mercado para configuraciones equivalentes, buscando un equilibrio entre calidad y coste.
 
 ---
 
 ## 13. Evidencias de compra
 
-Precios basados en configuraciones reales de:
-
-- Dell Precision / PowerEdge  
-- HP Enterprise  
-- PcComponentes  
-- Amazon  
-
-Ejemplos:
-
-- Workstations → 2.400–2.800 €  
-- PCs → 700–900 €  
-- Servidores → desde 6.000 €  
-
-Se han consultado configuradores oficiales para obtener valores realistas.
+Las estimaciones de precio se han obtenido a partir de configuraciones reales disponibles en fabricantes y distribuidores, comparando diferentes opciones para obtener valores representativos del mercado actual.
 
 ---
 
 ## 14. Limitaciones de la solución
 
-- Un único servidor (punto de fallo)  
-- Red de 1 GbE  
-- Sin alta disponibilidad  
+La infraestructura planteada presenta algunas limitaciones, principalmente relacionadas con la dependencia de un único servidor y la capacidad de la red.
 
-Soluciones en entorno real:
-
-- Cluster Proxmox  
-- Red 10 GbE  
-- Almacenamiento distribuido  
+Estas limitaciones podrían resolverse mediante la incorporación de redundancia adicional y mejoras en la infraestructura de red.
 
 ---
 
 ## 15. Conclusión
 
-La infraestructura propuesta:
+La solución propuesta permite cubrir de forma adecuada las necesidades de la empresa, ofreciendo un entorno estable, eficiente y preparado para el crecimiento.
 
-- Se adapta a las necesidades reales  
-- Está correctamente dimensionada  
-- Permite crecimiento futuro  
-- Garantiza estabilidad en el CPD  
-- Mantiene equilibrio coste/rendimiento  
+El diseño combina rendimiento en los puestos críticos con optimización de recursos en los equipos de menor carga, logrando un equilibrio adecuado entre coste y prestaciones.
 
-Además, se integra correctamente con la red y los sistemas, formando una solución completa, coherente y profesional.
+En conjunto, la infraestructura resulta coherente, funcional y alineada con los requisitos planteados.
+
