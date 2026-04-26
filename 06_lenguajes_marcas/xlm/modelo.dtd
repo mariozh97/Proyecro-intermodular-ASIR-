@@ -1,1 +1,26 @@
+<!ELEMENT empresa (clientes, proyectos, incidencias)>
+
+<!ELEMENT clientes (cliente+)>
+<!ELEMENT cliente (nombre, email)>
+<!ATTLIST cliente id ID #REQUIRED>
+
+<!ELEMENT proyectos (proyecto+)>
+<!ELEMENT proyecto (nombre)>
+<!ATTLIST proyecto 
+    id ID #REQUIRED
+    cliente IDREF #REQUIRED>
+
+<!ELEMENT incidencias (incidencia+)>
+<!ELEMENT incidencia (descripcion, prioridad, fecha, tecnico)>
+<!ATTLIST incidencia 
+    id ID #REQUIRED
+    proyecto IDREF #REQUIRED
+    estado (abierta | cerrada | proceso) #REQUIRED>
+
+<!ELEMENT nombre (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT descripcion (#PCDATA)>
+<!ELEMENT prioridad (#PCDATA)>
+<!ELEMENT fecha (#PCDATA)>
+<!ELEMENT tecnico (#PCDATA)>
 
