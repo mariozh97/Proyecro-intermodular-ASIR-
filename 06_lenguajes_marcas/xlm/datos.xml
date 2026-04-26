@@ -1,1 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../xslt/transform.xsl"?>
+<!DOCTYPE empresa SYSTEM "modelo.dtd">
 
+<empresa>
+
+    <clientes>
+        <cliente id="c1">
+            <nombre>TechSolutions SL</nombre>
+            <email>info@techsolutions.com</email>
+        </cliente>
+        <cliente id="c2">
+            <nombre>DataCorp SA</nombre>
+            <email>contacto@datacorp.es</email>
+        </cliente>
+        <cliente id="c3">
+            <nombre>SoftInnovation</nombre>
+            <email>hola@softinnovation.com</email>
+        </cliente>
+        <cliente id="c4">
+            <nombre>NetSystems</nombre>
+            <email>soporte@netsystems.com</email>
+        </cliente>
+    </clientes>
+
+    <proyectos>
+        <proyecto id="p1" cliente="c1">
+            <nombre>Web Corporativa</nombre>
+        </proyecto>
+        <proyecto id="p2" cliente="c2">
+            <nombre>ERP Interno</nombre>
+        </proyecto>
+        <proyecto id="p3" cliente="c3">
+            <nombre>App Móvil</nombre>
+        </proyecto>
+        <proyecto id="p4" cliente="c4">
+            <nombre>Intranet</nombre>
+        </proyecto>
+    </proyectos>
+
+    <incidencias>
+        <incidencia id="i1" proyecto="p1" estado="abierta">
+            <descripcion>Error login</descripcion>
+            <prioridad>alta</prioridad>
+            <fecha>2026-04-20</fecha>
+            <tecnico>Mario</tecnico>
+        </incidencia>
+
+        <incidencia id="i2" proyecto="p2" estado="proceso">
+            <descripcion>Fallo en informes</descripcion>
+            <prioridad>media</prioridad>
+            <fecha>2026-04-21</fecha>
+            <tecnico>Laura</tecnico>
+        </incidencia>
+
+        <incidencia id="i3" proyecto="p3" estado="abierta">
+            <descripcion>App no carga</descripcion>
+            <prioridad>alta</prioridad>
+            <fecha>2026-04-22</fecha>
+            <tecnico>Carlos</tecnico>
+        </incidencia>
+
+        <incidencia id="i4" proyecto="p1" estado="cerrada">
+            <descripcion>Error base de datos</descripcion>
+            <prioridad>alta</prioridad>
+            <fecha>2026-04-23</fecha>
+            <tecnico>Ana</tecnico>
+        </incidencia>
+
+        <incidencia id="i5" proyecto="p4" estado="proceso">
+            <descripcion>Problema de red</descripcion>
+            <prioridad>media</prioridad>
+            <fecha>2026-04-24</fecha>
+            <tecnico>Pedro</tecnico>
+        </incidencia>
+
+        <incidencia id="i6" proyecto="p2" estado="cerrada">
+            <descripcion>Error exportación</descripcion>
+            <prioridad>baja</prioridad>
+            <fecha>2026-04-25</fecha>
+            <tecnico>Lucía</tecnico>
+        </incidencia>
+
+    </incidencias>
+
+</empresa>
