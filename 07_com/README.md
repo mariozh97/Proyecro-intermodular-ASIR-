@@ -1,4 +1,4 @@
-# ☁️ Computación en la Nube - Proyecto ASIR
+# Computación en la Nube - Proyecto ASIR
 
 Repositorio del proyecto: https://github.com/TU-USUARIO/proyecto-asir
 
@@ -18,7 +18,7 @@ Existen tres modelos principales de computación en la nube:
 * **PaaS (Platform as a Service):** ofrece un entorno completo de desarrollo sin gestionar la infraestructura.
 * **SaaS (Software as a Service):** aplicaciones accesibles vía web sin necesidad de instalación ni mantenimiento.
 
-👉 En este proyecto se ha utilizado **IaaS**, ya que se ha desplegado y configurado manualmente una máquina virtual.
+ En este proyecto se ha utilizado **IaaS**, ya que se ha desplegado y configurado manualmente una máquina virtual.
 
 ---
 
@@ -51,7 +51,7 @@ La infraestructura local del proyecto incluye varios servidores y una red segmen
 | ACLs                   | Security Groups                |
 | Servidor único (SPOF)  | Infraestructura distribuida    |
 
-👉 En esta práctica se ha implementado una instancia EC2 que representa el servidor web del proyecto.
+ En esta práctica se ha implementado una instancia EC2 que representa el servidor web del proyecto.
 
 ---
 
