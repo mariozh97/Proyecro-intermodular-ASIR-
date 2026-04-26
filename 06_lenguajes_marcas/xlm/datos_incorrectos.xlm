@@ -1,1 +1,28 @@
-.
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE empresa SYSTEM "modelo.dtd">
+
+<empresa>
+
+    <clientes>
+        <cliente id="c1">
+            <nombre>Empresa</nombre>
+            <email>test@test.com
+        </cliente>
+    </clientes>
+
+    <proyectos>
+        <proyecto id="p1" cliente="c1">
+            <nombre>Proyecto</nombre>
+        </proyecto>
+    </proyectos>
+
+    <incidencias>
+        
+        <incidencia id="i1" proyecto="p1" estado="abierta">
+            <descripcion>Error</descripcion>
+            <prioridad>alta</prioridad>
+            <fecha>2026-04-20</fecha>
+        </incidencia>
+    </incidencias>
+
+</empresa>
