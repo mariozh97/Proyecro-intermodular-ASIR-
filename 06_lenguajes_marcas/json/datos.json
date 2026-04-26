@@ -1,1 +1,24 @@
-
+{
+  "empresa": {
+    "clientes": [
+      {"id": "c1", "nombre": "TechSolutions SL", "email": "info@techsolutions.com"},
+      {"id": "c2", "nombre": "DataCorp SA", "email": "contacto@datacorp.es"},
+      {"id": "c3", "nombre": "SoftInnovation", "email": "hola@softinnovation.com"},
+      {"id": "c4", "nombre": "NetSystems", "email": "soporte@netsystems.com"}
+    ],
+    "proyectos": [
+      {"id": "p1", "cliente": "c1", "nombre": "Web Corporativa"},
+      {"id": "p2", "cliente": "c2", "nombre": "ERP Interno"},
+      {"id": "p3", "cliente": "c3", "nombre": "App Móvil"},
+      {"id": "p4", "cliente": "c4", "nombre": "Intranet"}
+    ],
+    "incidencias": [
+      {"id": "i1", "proyecto": "p1", "estado": "abierta", "descripcion": "Error login", "prioridad": "alta", "fecha": "2026-04-20", "tecnico": "Mario"},
+      {"id": "i2", "proyecto": "p2", "estado": "proceso", "descripcion": "Fallo en informes", "prioridad": "media", "fecha": "2026-04-21", "tecnico": "Laura"},
+      {"id": "i3", "proyecto": "p3", "estado": "abierta", "descripcion": "App no carga", "prioridad": "alta", "fecha": "2026-04-22", "tecnico": "Carlos"},
+      {"id": "i4", "proyecto": "p1", "estado": "cerrada", "descripcion": "Error base de datos", "prioridad": "alta", "fecha": "2026-04-23", "tecnico": "Ana"},
+      {"id": "i5", "proyecto": "p4", "estado": "proceso", "descripcion": "Problema de red", "prioridad": "media", "fecha": "2026-04-24", "tecnico": "Pedro"},
+      {"id": "i6", "proyecto": "p2", "estado": "cerrada", "descripcion": "Error exportación", "prioridad": "baja", "fecha": "2026-04-25", "tecnico": "Lucía"}
+    ]
+  }
+}
