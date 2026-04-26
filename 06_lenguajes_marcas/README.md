@@ -60,24 +60,16 @@ http://127.0.0.1:5500/xml/datos.xml
 ## Evidencias
 
 ### Validación correcta (DTD)
-
-Archivo: `capturas/validacion_dtd.png`
+![Validación DTD](capturas/validacion_dtd.png)
 
 ### Validación fallida (error XML)
-
-Archivo: `capturas/validacion_fallida.png`
-
-### Transformación HTML
-
-Archivo: `capturas/transform_html.png`
+![Error XML](capturas/capturas.validacion_fallida.png)
 
 ### Transformación HTML con CSS
-
-Archivo: `capturas/capturas.transform_html.css.png`
+![HTML con CSS](capturas/capturas.transform_html.css.png)
 
 ### Datos en JSON
-
-Archivo: `capturas/json_datos.png`
+![JSON](capturas/json_datos.png)
 
 ---
 
