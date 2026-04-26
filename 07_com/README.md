@@ -1,7 +1,5 @@
 # Computación en la Nube - Proyecto ASIR
 
-Repositorio del proyecto: https://github.com/TU-USUARIO/proyecto-asir
-
 ---
 
 ## 1. Introducción
