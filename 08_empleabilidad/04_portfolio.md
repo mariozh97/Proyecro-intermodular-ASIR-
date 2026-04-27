@@ -2,7 +2,7 @@
 
 ## Proyecto: Infraestructura IT ASIR
 
-🔗 Repositorio: https://github.com/mariozh97/Proyecto-intermodular-ASIR-
+ Repositorio: https://github.com/mariozh97/Proyecto-intermodular-ASIR-
 
 ---
 
@@ -27,7 +27,7 @@ En el proyecto se ha desarrollado:
 
 Además de la parte de redes, sistemas y cloud, el proyecto también incluye otros módulos trabajados durante el curso:
 
-* **Hardware:** selección y justificación de equipos (servidores, clientes y almacenamiento)
+* **Hardware:** selección y justificación de equipos
 * **Bases de datos:** diseño de un modelo relacional y uso de SQL
 * **Lenguajes de marcas:** creación de documentación estructurada en XML
 
@@ -47,7 +47,7 @@ Se muestra el diseño completo de la red, incluyendo la segmentación por VLANs 
 
 ### Servidor web (Apache)
 
-![Servidor web](capturas/apache_web.png.jpg)
+![Servidor web](capturas/srv2_apache_custom.png)
 
 El servidor web está configurado y accesible desde navegador, lo que confirma su correcto funcionamiento.
 
@@ -55,7 +55,7 @@ El servidor web está configurado y accesible desde navegador, lo que confirma s
 
 ### Servicio DHCP
 
-![DHCP](capturas/apache_status.png.jpg)
+![DHCP](capturas/srv3_dhcp_activo.png)
 
 El servicio DHCP se encuentra activo, permitiendo la asignación automática de direcciones IP en la red.
 
@@ -63,7 +63,7 @@ El servicio DHCP se encuentra activo, permitiendo la asignación automática de 
 
 ### Despliegue en AWS
 
-![AWS](capturas/aws_instances.png.jpg)
+![AWS](capturas/aws_instances.png)
 
 Se ha desplegado una instancia en la nube, lo que añade una parte cloud al proyecto.
 
