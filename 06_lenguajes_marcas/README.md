@@ -2,7 +2,7 @@
 
 ## Descripción
 
-Este módulo del proyecto intermodular consiste en el diseño, validación y transformación de datos utilizando lenguajes de marcas.
+Este módulo consiste en el diseño, validación y transformación de datos utilizando lenguajes de marcas.
 
 Se ha implementado un sistema de gestión de incidencias para una empresa tecnológica, empleando XML, DTD, XSLT, CSS y JSON.
 
