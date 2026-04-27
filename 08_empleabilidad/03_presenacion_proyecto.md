@@ -1,6 +1,6 @@
 # Presentación del proyecto
 
-## Descripción del proyecto
+## Descripción 
 
 El proyecto consiste en montar una infraestructura IT para una empresa de desarrollo de software. La idea era simular cómo sería una red real en una empresa y aplicar lo que hemos visto en clase.
 
