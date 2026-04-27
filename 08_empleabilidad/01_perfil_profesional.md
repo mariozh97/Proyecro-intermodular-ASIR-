@@ -19,7 +19,7 @@ Me interesa especialmente el ámbito de las redes, el cloud y la seguridad, ya q
 * Redes: direccionamiento IP, VLANs, routing
 * Sistemas: Ubuntu Server
 * Servicios: Apache, DHCP, DNS, SSH
-* Cloud: AWS (EC2, acceso remoto, configuración básica)
+* Cloud: AWS (EC2, acceso remoto, configuración)
 
 ---
 
