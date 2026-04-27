@@ -87,12 +87,3 @@ He seleccionado estas empresas porque tienen presencia en Madrid y representan e
   * Sistemas Linux
   * Análisis de vulnerabilidades
 
----
-
-### Referencia a perfiles reales
-
-Para entender mejor estos roles, he revisado perfiles profesionales en plataformas como LinkedIn relacionados con cloud y ciberseguridad.
-
-En estos perfiles se repiten aspectos como la experiencia en AWS, la gestión de redes y sistemas Linux, así como la importancia de la seguridad en entornos cloud.
-
-Esto confirma que los conocimientos trabajados en el proyecto están alineados con las competencias que se demandan actualmente en el sector.
