@@ -1,6 +1,7 @@
 # Perfil profesional
 
 **Nombre:** Mario Zurdo Herraón
+
 **Perfil:** Estudiante de ASIR orientado a redes, cloud y ciberseguridad
 
 ---
