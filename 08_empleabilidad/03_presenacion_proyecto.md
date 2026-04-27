@@ -57,4 +57,4 @@ Este proyecto me ha servido para ver cómo se aplican todos los conceptos en alg
 
 ---
 
-🔗 Repositorio: https://github.com/TU-USUARIO/proyecto-asir
+🔗 Repositorio: https://github.com/mariozh97/Proyecto-intermodular-ASIR-
